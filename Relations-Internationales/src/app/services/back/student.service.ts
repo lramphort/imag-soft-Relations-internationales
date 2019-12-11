@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Student } from 'src/app/models/student';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { sha256, sha224 } from 'js-sha256';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class StudentService {
   constructor(private readonly http: HttpClient) { }
 
   testLogs(login: string, passWord: string): Observable<any> {
+    const encryptedPassword = sha256(passWord);
     return this.http.get<any>(
-      `${environment.ip_address}${environment.back.login_student}?loginStudent=${login}&passWordStudent=${passWord}`
+      `${environment.ip_address}${environment.back.login_student}?loginStudent=${login}&passWordStudent=${encryptedPassword}`
     ).pipe(
       map(response => {
         return response;

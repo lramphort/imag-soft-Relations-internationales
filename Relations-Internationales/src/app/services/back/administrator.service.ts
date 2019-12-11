@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import {sha256} from 'js-sha256';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class AdministratorService {
   constructor(private readonly http: HttpClient) { }
 
   testLogs(login: string, passWord: string): Observable<boolean> {
+    const encryptedPassword = sha256(passWord);
     return this.http.get<boolean>(
-      `${environment.ip_address}${environment.back.login_administrator}?loginAdministrator=${login}&passWordAdministrator=${passWord}`
+      `${environment.ip_address}${environment.back.login_administrator}?loginAdministrator=${login}&passWordAdministrator=${encryptedPassword}`
     );
   }
 
