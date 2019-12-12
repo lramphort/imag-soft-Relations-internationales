@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  ip_address: '//127.0.0.1',
+  ip_address: 'http://im2ag-relations-internationales.univ-grenoble-alpes.fr',
   back: {
     login_student: '/student/login_student.php',
     login_administrator: '/administrator/login_administrator.php',
