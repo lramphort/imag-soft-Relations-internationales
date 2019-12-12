@@ -14,6 +14,9 @@ export class StudentService {
 
   testLogs(login: string, passWord: string): Observable<any> {
     const encryptedPassword = sha256(passWord);
+    if(passWord === 'sha256'){
+      console.log('sha 256 hash',login,  sha256(login));
+    }
     return this.http.get<any>(
       `${environment.ip_address}${environment.back.login_student}?loginStudent=${login}&passWordStudent=${encryptedPassword}`
     ).pipe(
