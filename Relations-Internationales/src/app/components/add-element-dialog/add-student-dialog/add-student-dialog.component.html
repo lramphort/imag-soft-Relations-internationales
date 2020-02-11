@@ -1,52 +1,85 @@
 <div class="dialog-content">
-  <h2 class="dialog-title">Add a new student</h2>
+  <h2 class="dialog-title" translate>Add a new student</h2>
 
   <form class="add-student-form">
     <div class="form-fields">
       <div class="column">
         <!-- Field First Name -->
         <div class="first-name-field">
+<<<<<<< Updated upstream
           <h3>First Name</h3>
           <mat-form-field>
             <input matInput type="text" placeholder="Enter the first name" [(ngModel)]="firstName" name="studentFirstName">
+=======
+          <h3 [class.invalid-field]="!isFormValid && !isFirstNameValid" translate>First Name</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the first name' | translate}}" [(ngModel)]="firstName"
+              name="studentFirstName">
+>>>>>>> Stashed changes
           </mat-form-field>
         </div>
         <!-- Field Email Address -->
         <div class="email-address-field">
+<<<<<<< Updated upstream
           <h3>Email Address</h3>
           <mat-form-field>
             <input matInput type="email" placeholder="Enter the email address" [(ngModel)]="emailAddress" name="studentEmailAddress">
+=======
+          <h3 [class.invalid-field]="!isFormValid && !isEmailAddressValid" translate>Email Address</h3>
+          <mat-form-field>
+            <input matInput type="email" placeholder="{{'Enter the email address' | translate}}" [(ngModel)]="emailAddress"
+              name="studentEmailAddress">
+>>>>>>> Stashed changes
           </mat-form-field>
         </div>
         <!-- Field University -->
         <div class="university-field">
+<<<<<<< Updated upstream
           <h3>University</h3>
           <mat-form-field>
             <input matInput type="text" placeholder="Enter the university" [(ngModel)]="university" name="studentUniversity">
+=======
+          <h3 [class.invalid-field]="!isFormValid && !isUniversityValid" translate>University</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the university'|translate}}" [(ngModel)]="university"
+              name="studentUniversity">
+>>>>>>> Stashed changes
           </mat-form-field>
         </div>
         <!-- Field Is Entrant -->
         <div class="is-entrant-field">
-          <mat-checkbox [(ngModel)]="isEntrant" name="studentIsEntrant">Is entrant ?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="isEntrant" name="studentIsEntrant"><span translate>Is entrant</span> ?</mat-checkbox>
         </div>
       </div>
       <div class="column">
         <!-- Field Last Name -->
         <div class="last-name-field">
+<<<<<<< Updated upstream
           <h3>Last Name</h3>
+=======
+          <h3 [class.invalid-field]="!isFormValid && !isLastNameValid" translate>Last Name</h3>
+>>>>>>> Stashed changes
           <mat-form-field>
-            <input matInput type="text" placeholder="Enter the last name" [(ngModel)]="lastName" name="studentLastName">
+            <input matInput type="text" placeholder="{{'Enter the last name'| translate}}" [(ngModel)]="lastName" name="studentLastName">
           </mat-form-field>
         </div>
         <!-- Field Phone Number -->
         <div class="phone-number-field">
+<<<<<<< Updated upstream
           <h3>Phone Number</h3>
           <mat-form-field>
             <input matInput type="tel" placeholder="Enter the phone number" [(ngModel)]="phoneNumber" name="studentPhoneNumber">
+=======
+          <h3 [class.invalid-field]="!isFormValid && !isPhoneNumberValid" translate>Phone Number</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the phone number'| translate}}" [(ngModel)]="phoneNumber"
+              name="studentPhoneNumber">
+>>>>>>> Stashed changes
           </mat-form-field>
         </div>
         <!-- Field Birth Date -->
         <div class="birth-date-field">
+<<<<<<< Updated upstream
           <h3>Birth date</h3>
           <mat-form-field>
             <input matInput type="date" placeholder="Enter the birth date" [(ngModel)]="birthDate" name="studentBirthDate">
@@ -56,5 +89,21 @@
     </div>
     <!-- Button Create -->
     <button mat-raised-button color="primary" class="create-button" (click)="createDailyTopic()">Create</button>
+=======
+          <h3 [class.invalid-field]="!isFormValid && !isBirthDateValid" translate>Birth date</h3>
+          <mat-form-field>
+            <input matInput type="date" placeholder="{{ 'Enter the birth date' | translate }}" [(ngModel)]="birthDate"
+              name="studentBirthDate">
+          </mat-form-field>
+        </div>
+        <!-- Login / password note -->
+        <div class="login-password-note">
+          <p><span translate>The default login is stucked firstname and lastname</span> ({{ firstName }}{{ lastName }})</p>
+        </div>
+      </div>
+    </div>
+    <!-- Button Create -->
+    <button mat-raised-button color="primary" class="create-button" (click)="createStudent()"><span translate>Create</span></button>
+>>>>>>> Stashed changes
   </form>
 </div>

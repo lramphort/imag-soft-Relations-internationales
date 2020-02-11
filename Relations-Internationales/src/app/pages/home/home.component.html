@@ -1,4 +1,6 @@
 <!-- Header banner -->
+<app-header [fullNameUser]="fullNameUser" (setLanguage)="switchLanguage($event)"></app-header>
+
 <p *ngIf="isAdministrator">
   <app-administrator-side></app-administrator-side>
 </p>

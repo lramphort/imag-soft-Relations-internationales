@@ -1,0 +1,28 @@
+<div class="dialog-content">
+  <h2 class="dialog-title">Send an email</h2>
+
+  <form class="email-form">
+    <div class="form-fields">
+      <div class="column">
+        <!-- Field Object -->
+        <div class="object-field">
+          <h3>Object</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the object'| translate}}" [(ngModel)]="object" name="emailObject">
+          </mat-form-field>
+        </div>
+        <!-- Field Body -->
+        <div class="body-field">
+          <h3>Body</h3>
+          <mat-form-field>
+            <textarea matInput placeholder="{{'Enter a body'| translate}}" name="emailBody" [(ngModel)]="body"></textarea>
+          </mat-form-field>
+        </div>
+
+        <!-- Button Send email -->
+        <a class="send-button" (click)="sendEmail()"
+          href="mailto:{{student.getEmailAddress()}}?subject={{object}}&body={{body}}">Send</a>
+      </div>
+    </div>
+  </form>
+</div>

@@ -7,20 +7,32 @@
     <div class="username-field">
       <mat-icon>account_box</mat-icon>
       <mat-form-field>
+<<<<<<< Updated upstream
         <input matInput type="text" placeholder="Enter your username">
+=======
+        <input matInput type="text" placeholder="{{'Enter your username'| translate}}" [(ngModel)]="login" name="loginField">
+>>>>>>> Stashed changes
       </mat-form-field>
     </div>
     <!-- Field Password -->
     <div class="password-field">
       <mat-icon>account_circle</mat-icon>
       <mat-form-field>
+<<<<<<< Updated upstream
         <input matInput type="password" placeholder="Enter your password">
+=======
+        <input matInput type="password" placeholder="{{'Enter your password'| translate}}" [(ngModel)]="passWord" name="passWordField">
+>>>>>>> Stashed changes
       </mat-form-field>
     </div>
     <!-- Button Connection -->
     <button mat-raised-button color="primary" class="connection-button" (click)="navigateTo('home')">Connection !</button>
   </form>
 
+<<<<<<< Updated upstream
   <!-- Button Navigation -->
   <button mat-stroked-button color="primary" (click)="navigateTo('home')">Go to home page</button>
 </div>
+=======
+</div>
+>>>>>>> Stashed changes

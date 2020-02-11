@@ -1,5 +1,5 @@
 <div class="dialog-content">
-  <h2 class="dialog-title">Add a new course</h2>
+  <h2 class="dialog-title" translate>Add a new course</h2>
 
   <form class="add-course-form">
     <div class="form-fields">
@@ -8,14 +8,27 @@
         <div class="name-field">
           <h3>Name</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="Enter the name" [(ngModel)]="name" name="courseName">
+            <input matInput type="text" placeholder="{{'Enter the name' | translate}}" [(ngModel)]="name" name="courseName">
           </mat-form-field>
         </div>
         <!-- Field ECTS -->
         <div class="ects-field">
           <h3>ECTS</h3>
           <mat-form-field>
+<<<<<<< Updated upstream
             <input matInput type="number" placeholder="Enter the ects" [(ngModel)]="ects" name="courseECTS">
+=======
+            <input matInput type="number" onkeydown="return event.keyCode !== 69" placeholder="Enter the ects"
+              [(ngModel)]="ects" name="courseECTS">
+          </mat-form-field>
+        </div>
+        <!-- Field TeacherEmail -->
+        <div class="teacher-email-field">
+          <h3 [class.invalid-field]="!isFormValid && !isTeacherEmailValid" translate>Teacher email address</h3>
+          <mat-form-field>
+            <input matInput type="email" placeholder="{{'Enter the teacher\'s email address'| translate}}" [(ngModel)]="teacherEmail"
+              name="courseTeacherEmail">
+>>>>>>> Stashed changes
           </mat-form-field>
         </div>
       </div>
@@ -24,6 +37,7 @@
         <div class="description-field">
           <h3>Description</h3>
           <mat-form-field>
+<<<<<<< Updated upstream
             <input matInput type="text" placeholder="Enter the description" [(ngModel)]="description" name="courseDescription">
           </mat-form-field>
         </div>
@@ -34,6 +48,25 @@
             <mat-select placeholder="Select the teachers" multiple [(ngModel)]="teachers" name="courseTeachers">
               <mat-option *ngFor="let teacher of teachersToSelect">{{teacher}}</mat-option>
             </mat-select>
+=======
+            <textarea matInput placeholder="{{'Enter the description'| translate}}" [(ngModel)]="description"
+              name="courseDescription"></textarea>
+          </mat-form-field>
+        </div>
+        <!-- Field TeacherFullName -->
+        <div class="teacher-full-name-field">
+          <h3 [class.invalid-field]="!isFormValid && !isTeacherFullNameValid">Teacher full name</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the teacher\'s full name'| translate}}" [(ngModel)]="teacherFullName"
+              name="courseTeacherFullName">
+          </mat-form-field>
+        </div>
+        <!-- Field Semester -->
+        <div class="semester-field">
+          <h3>Semester</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the semester'| translate}}" [(ngModel)]="semester" name="courseSemester">
+>>>>>>> Stashed changes
           </mat-form-field>
         </div>
       </div>

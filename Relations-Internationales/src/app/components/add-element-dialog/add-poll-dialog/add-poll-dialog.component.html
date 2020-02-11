@@ -1,0 +1,36 @@
+<div class="dialog-content">
+  <h2 class="dialog-title" translate>Add a new poll</h2>
+
+  <form class="add-poll-form">
+    <div class="form-fields">
+      <div class="column">
+        <!-- Field Question -->
+        <div class="question-field">
+          <h3 [class.invalid-field]="!isFormValid && !isQuestionValid">Question</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the name' | translate}}" [(ngModel)]="question" name="pollQuestion">
+          </mat-form-field>
+        </div>
+        <!-- Field Answers -->
+        <div class="possible-answer-field">
+          <h3 [class.invalid-field]="!isFormValid && !arePossibleAnswersValid">Possible answers</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter a possible answer'|translate}}" name="pollPossibleAnswers" [(ngModel)]="possibleAnswer">
+          </mat-form-field>
+          <button mat-icon-button color="primary" class="add-possible-answer-button" (click)="addPossibleAnswer()">
+            <mat-icon>add_circle_outline</mat-icon>
+          </button>
+        </div>
+
+        <div class="possible-answer" *ngFor="let possibleAnswer of possibleAnswers; index as index">
+          <h3 class="possible-answer-label">{{ possibleAnswer }}</h3>
+          <button mat-icon-button color="primary" class="remove-possible-answer-button" (click)="removePossibleAnswer(index)">
+            <mat-icon class="clear-mat-icon">clear</mat-icon>
+          </button>
+        </div>
+        <!-- Button Create -->
+        <button mat-raised-button color="primary" class="create-button" (click)="createPoll()">Create</button>
+      </div>
+    </div>
+  </form>
+</div>

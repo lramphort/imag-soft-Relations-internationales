@@ -1,62 +1,100 @@
-<mat-card>
-  <!-- Header -->
-  <mat-card-header>
-    <div class="student-summary">
-      <!-- Icon -->
-      <mat-icon class="account-icon">account_circle</mat-icon>
-      <!-- Identity -->
-      <div class="student-identity">
-        <h2>{{ selectedStudent.getFirstName() }} {{ selectedStudent.getLastName() }}</h2>
-        <h3>{{ selectedStudent.getEmailAddress() }}</h3>
-        <h3>{{ selectedStudent.getPhoneNumber() }}</h3>
+<!-- Header banner -->
+<app-header [fullNameUser]="fullNameUser" (setLanguage)="switchLanguage($event)"></app-header>
+<div #contentPdf>
+  <mat-card>
+    <!-- Header -->
+    <mat-card-header>
+      <div class="student-summary">
+        <!-- Icon -->
+        <mat-icon class="account-icon">account_circle</mat-icon>
+        <!-- Identity -->
+        <div class="student-identity">
+          <h2>{{ selectedStudent.getFirstName() }} {{ selectedStudent.getLastName() }}</h2>
+          <h3>{{ selectedStudent.getEmailAddress() }}</h3>
+          <h3>{{ selectedStudent.getPhoneNumber() }}</h3>
+        </div>
+        <!-- Last connection -->
+        <div class="student-connection">
+          <h2 *ngIf="selectedStudent.getLastConnection()"><span translate>Last connection</span> : {{ selectedStudent.getLastConnection() |
+          date: 'dd-MM-yyyy' }}</h2>
+          <h2 *ngIf="!selectedStudent.getLastConnection()"><span translate>Last connection</span> : /</h2>
+          <h3 class="contact" (click)="displaySendEmailDialog()">Contact</h3>
+        </div>
+        <!-- University -->
+        <div class="student-university">
+          <h2 class="university">{{ selectedStudent.getUniversity() }}</h2>
+          <h3 *ngIf="selectedStudent.getIsEntrant() === 'true'" translate>Incoming student</h3>
+          <h3 *ngIf="selectedStudent.getIsEntrant() === 'false'" translate>Outgoing student</h3>
+          <button *ngIf="!selectedCourse" mat-stroked-button (click)="generatePDF()"><span translate>Generate PDF</span></button>
+          <br />
+          <button mat-stroked-button *ngIf="!selectedCourse" (click)="setIsLearningAgreementValid()"
+            [disabled]="selectedStudent.getIsLearningAgreementValid() === 'true' && !isLAPending">
+            <a translate>Valid learning agreement</a>
+          </button>
+          <button mat-stroked-button *ngIf="!selectedCourse" class="redColor" (click)="setIsLearningAgreementValid()"
+            [disabled]="selectedStudent.getIsLearningAgreementValid() !== 'true' || isLAPending">
+            <a>Unvalid learning agreement</a>
+          </button>
+        </div>
       </div>
-      <!-- Last connection -->
-      <div class="student-connection">
-        <h2>Last connection : {{ selectedStudent.getLastConnection() }}</h2>
-        <h3 class="contact">Contact</h3>
-      </div>
-      <!-- University -->
-      <div class="student-university">
-        <h2 class="university">{{ selectedStudent.getUniversity() }}</h2>
-        <h3 *ngIf="selectedStudent.getIsEntrant()"> Entrant student</h3>
-        <h3 *ngIf="!selectedStudent.getIsEntrant()"> Non entrant student</h3>
-        <button mat-stroked-button>Generate PDF</button>
-      </div>
-    </div>
-  </mat-card-header>
+    </mat-card-header>
 
-  <!-- Content -->
-  <mat-card-content>
-    <!-- Courses -->
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-      <!-- Panel header -->
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h2>Courses</h2>
-        </mat-panel-title>
-        <!-- Panel description -->
-        <mat-panel-description>
-          <h3>Learning agreement : validated</h3>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <!-- Courses list -->
-      <mat-list role="list">
-        <!-- Column header -->
-        <mat-list-item class="header" role="listitem">
-          <h2 class="course-column">Name</h2>
-          <h2 class="course-column">ECTS</h2>
-          <h2 class="course-column">Description</h2>
-          <h2 class="course-column">Last mark</h2>
-          <h2 class="course-column"></h2>
-        </mat-list-item>
-        <!-- Courses content -->
-        <mat-list-item *ngFor="let course of coursesOfSelectedStudent" role="listitem">
-          <h2 class="course-column">{{ course.getName() }}</h2>
-          <h2 class="course-column">{{ course.getEcts() }}</h2>
-          <h2 class="course-column">{{ course.getDescription() }}</h2>
-          <h2 class="course-column">{{ course.getMarks()[course.getMarks().length -1].getValue() }}</h2>
-          <button mat-icon-button class="course-column">
-            <mat-icon class="trash-icon">delete_outline</mat-icon>
+    <mat-card-content>
+      <!-- Learning agreement -->
+      <mat-expansion-panel [class.table-green]="selectedStudent.getIsLearningAgreementValid() === 'true'"
+        [class.table-red]="selectedStudent.getIsLearningAgreementValid() === 'false' && !isLAPending"
+        [class.table-orange]="isLAPending">
+        <!-- Panel header -->
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2 translate>Learning agreement</h2>
+          </mat-panel-title>
+          <!-- Panel description -->
+          <mat-panel-description>
+            <h3 *ngIf="selectedStudent.getIsLearningAgreementValid() === 'true' && !isLAPending" class="greenColor">
+              <span translate>Learning agreement</span> : <span translate>valid</span> - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
+            </h3>
+            <h3 *ngIf="selectedStudent.getIsLearningAgreementValid() === 'false' && !isLAPending" class="redColor">
+              <span translate>Learning agreement</span> : <span translate>unvalid</span> - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
+            </h3>
+            <h3 *ngIf="isLAPending" class="orangeColor">
+              Learning agreement : pending - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
+            </h3>
+          </mat-panel-description>
+
+        </mat-expansion-panel-header>
+        <!-- Courses list -->
+        <mat-list role="list">
+          <!-- Column header -->
+          <mat-list-item class="header" role="listitem">
+            <h2 class="course-column" translate>Name</h2>
+            <h2 class="course-column" translate>ECTS</h2>
+            <h2 class="course-column" translate>Description</h2>
+            <h2 class="course-column" translate>Semester</h2>
+            <h2 class="course-column" translate>Added at</h2>
+            <h2 class="course-column"></h2>
+          </mat-list-item>
+          <!-- Courses content -->
+          <mat-list-item *ngFor="let course of coursesOfSelectedStudentNotRejected; index as indexCourse"
+            class="course-row" role="listitem">
+            <h2 class="course-column" (click)="setSelectedCourse(course)">{{ course.getName() }}</h2>
+            <h2 class="course-column" (click)="setSelectedCourse(course)">{{ course.getEcts() }}</h2>
+            <h2 class="course-column" (click)="setSelectedCourse(course)">{{ course.getDescription() }}</h2>
+            <h2 class="course-column" *ngIf="course.getSemester() !== 'undefined'" (click)="setSelectedCourse(course)">
+              {{ course.getSemester()}}</h2>
+            <h2 class="course-column" *ngIf="course.getSemester() === 'undefined'" (click)="setSelectedCourse(course)">/
+            </h2>
+            <h2 class="course-column--big" (click)="setSelectedCourse(course)">{{ course.getLastModification() }}</h2>
+            <button mat-icon-button class="delete-column" (click)="rejectCourse(course.getIdCourse())">
+              <mat-icon class="trash-icon">block</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+        <!-- Add Course button -->
+        <div class="courses-footer">
+          <button mat-stroked-button color="primary" class="add-element-button"
+            (click)="displayAddElementDialog('course')">
+            <span translate>Add new course</span>
           </button>
         </mat-list-item>
       </mat-list>
@@ -65,73 +103,171 @@
         Add new course
       </button>
     </mat-expansion-panel>
+      <!-- History -->
+      <mat-expansion-panel>
+        <!-- Panel header -->
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2 translate>History</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- Courses list -->
+        <mat-list role="list">
+          <!-- Column header -->
+          <mat-list-item class="header" role="listitem">
+            <h2 class="course-column" translate>Name</h2>
+            <h2 class="course-column" translate>ECTS</h2>
+            <h2 class="course-column" translate>Description</h2>
+            <h2 class="course-column" translate>Semester</h2>
+            <h2 class="course-column" translate>Date</h2>
+            <h2 class="course-column"></h2>
+          </mat-list-item>
+          <!-- Courses content -->
+          <mat-list-item *ngFor="let course of coursesOfSelectedStudent; index as indexCourse" class="course-row"
+            role="listitem" [class.rejected-course-cell]="course.getState() === 'rejected'"
+            [class.pending-course-cell]="course.getState() === 'pending'"
+            [class.accepted-course-cell]="course.getState() === 'accepted'">
+            <h2 class="course-column" (click)="setSelectedCourse(course)">{{ course.getName() }}</h2>
+            <h2 class="course-column" (click)="setSelectedCourse(course)">{{ course.getEcts() }}</h2>
+            <h2 class="course-column" (click)="setSelectedCourse(course)">{{ course.getDescription() }}</h2>
+            <h2 class="course-column" *ngIf="course.getSemester() !== 'undefined'" (click)="setSelectedCourse(course)">
+              {{ course.getSemester()}}</h2>
+            <h2 class="course-column" *ngIf="course.getSemester() === 'undefined'" (click)="setSelectedCourse(course)">/
+            </h2>
+            <h2 class="course-column--big" (click)="setSelectedCourse(course)">
+              {{ course.getState() }} -
+              {{ course.getLastModification() |date : 'dd-MM-yyyy' }}
+            </h2>
+            <button mat-icon-button class="delete-column" (click)="deleteCourse(course.getIdCourse())">
+              <mat-icon class="trash-icon">delete_outline</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-card-content>
 
-    <!-- Topics -->
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-      <!-- Panel header -->
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h2>Topics</h2>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <!-- Topics list -->
-      <mat-list role="list">
-        <!-- Column header -->
-        <mat-list-item class="header" role="listitem">
-          <h2 class="dailyTopic-column">Title</h2>
-          <h2 class="dailyTopic-column">Date</h2>
-          <h2 class="dailyTopic-column">Description</h2>
-          <h2 class="dailyTopic-column"></h2>
-        </mat-list-item>
-        <!-- Topics content -->
-        <mat-list-item *ngFor="let dailyTopic of dailyTopicsOfSelectedStudent" role="listitem">
-          <h2 class="dailyTopic-column">{{ dailyTopic.getName() }}</h2>
-          <h2 class="dailyTopic-column">{{ dailyTopic.getDateDailyTopic() }}</h2>
-          <h2 class="dailyTopic-column">{{ dailyTopic.getDescription() }}</h2>
-          <button mat-icon-button class="dailyTopic-column">
-            <mat-icon class="trash-icon">delete_outline</mat-icon>
+    <!-- Content -->
+    <mat-card-content *ngIf="!selectedCourse">
+      <!-- Courses -->
+      <mat-expansion-panel>
+        <!-- Panel header -->
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2 translate>Courses</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- Courses list -->
+        <mat-list role="list">
+          <!-- Column header -->
+          <mat-list-item class="header" role="listitem">
+            <h2 class="course-column--large" translate>Name</h2>
+            <h2 class="course-column--large" translate>ECTS</h2>
+            <h2 class="course-column--large" translate>Description</h2>
+            <h2 class="course-column--large" translate>Last mark</h2>
+          </mat-list-item>
+          <!-- Courses content -->
+          <mat-list-item *ngFor="let course of coursesOfSelectedStudentNotRejected; index as indexCourse"
+            class="course-row" role="listitem">
+            <h2 class="course-column--large" (click)="setSelectedCourse(course)">{{ course.getName() }}</h2>
+            <h2 class="course-column--large" (click)="setSelectedCourse(course)">{{ course.getEcts() }}</h2>
+            <h2 class="course-column--large" (click)="setSelectedCourse(course)">{{ course.getDescription() }}</h2>
+            <h2 class="course-column--large" *ngIf="marks[indexCourse] && marks[indexCourse].marks.length > 0"
+              (click)="setSelectedCourse(course)">{{
+            marks[indexCourse].marks[marks[indexCourse].marks.length-1].getValueMark() }}</h2>
+            <h2 class="course-column--large" *ngIf="marks[indexCourse] && marks[indexCourse].marks.length === 0"
+              (click)="setSelectedCourse(course)">/</h2>
+          </mat-list-item>
+        </mat-list>
+        <!-- Add Course button -->
+        <div class="courses-footer">
+          <button mat-stroked-button color="primary" class="add-element-button"
+            (click)="displayAddElementDialog('course')">
+            <span translate>Add new course</span>
           </button>
-        </mat-list-item>
-      </mat-list>
-      <!-- Add Topic button -->
-      <button mat-stroked-button color="primary" class="add-element-button" (click)="displayAddElementDialog('dailyTopic')">
-        Add new daily topic
-      </button>
-    </mat-expansion-panel>
+        </div>
+      </mat-expansion-panel>
 
-    <!-- Contacts -->
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-      <!-- Panel header -->
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h2>Contacts</h2>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <!-- Contacts list -->
-      <mat-list role="list">
-        <!-- Column header -->
-        <mat-list-item class="header" role="listitem">
-          <h2 class="contact-column">Name</h2>
-          <h2 class="contact-column">Description</h2>
-          <h2 class="contact-column">Affiliation</h2>
-          <h2 class="contact-column">Email address</h2>
-          <h2 class="contact-column"></h2>
-        </mat-list-item>
-        <!-- Contacts content -->
-        <mat-list-item *ngFor="let contact of contactsOfSelectedStudent" role="listitem">
-          <h2 class="contact-column">{{ contact.getFirstName() }} {{ contact.getLastName() }}</h2>
-          <h2 class="contact-column">{{ contact.getDescription() }}</h2>
-          <h2 class="contact-column">{{ contact.getAffiliation() }}</h2>
-          <h2 class="contact-column">{{ contact.getEmailAddress() }}</h2>
-          <button mat-icon-button class="contact-column">
-            <mat-icon class="trash-icon">delete_outline</mat-icon>
-          </button>
-        </mat-list-item>
-      </mat-list>
-      <!-- Add Contact button -->
-      <button mat-stroked-button color="primary" class="add-element-button" (click)="displayAddElementDialog('contact')">
-        Add new contact
-      </button>
-    </mat-expansion-panel>
-  </mat-card-content>
-</mat-card>
+      <!-- Topics -->
+      <mat-expansion-panel (click)="updateDailtTopic()">
+        <!-- Panel header -->
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2 translate>Topics</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- Topics list -->
+        <mat-list role="list">
+          <!-- Column header -->
+          <mat-list-item class="header" role="listitem">
+            <h2 class="dailyTopic-column" translate>Title</h2>
+            <h2 class="dailyTopic-column" translate>Date</h2>
+            <h2 class="dailyTopic-column" translate>Description</h2>
+            <h2 class="dailyTopic-column"></h2>
+          </mat-list-item>
+          <!-- Topics content -->
+          <mat-list-item *ngFor="let dailyTopic of dailyTopicsOfSelectedStudent" class="row" role="listitem">
+            <h2 class="dailyTopic-column">{{ dailyTopic.getName() }}</h2>
+            <h2 class="dailyTopic-column">{{ dailyTopic.getDateDailyTopic() | date:"MM-dd-yyyy" }}</h2>
+            <h2 class="dailyTopic-column">{{ dailyTopic.getDescription() }}</h2>
+            <button mat-icon-button class="dailyTopic-column" (click)="deleteDailyTopic(dailyTopic.getIdDailyTopic())">
+              <mat-icon class="trash-icon">delete_outline</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+        <!-- Add Topic button -->
+        <button mat-stroked-button color="primary" class="add-element-button"
+          (click)="displayAddElementDialog('dailyTopic')">
+          <span translate>Add new daily topic</span>
+        </button>
+      </mat-expansion-panel>
+
+      <!-- Contacts -->
+      <mat-expansion-panel>
+        <!-- Panel header -->
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2>Contacts</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- Contacts list -->
+        <mat-list role="list">
+          <!-- Column header -->
+          <mat-list-item class="header" role="listitem">
+            <h2 class="contact-column" translate>Name</h2>
+            <h2 class="contact-column" translate>Description</h2>
+            <h2 class="contact-column" translate>Affiliation</h2>
+            <h2 class="contact-column" translate>Email address</h2>
+            <h2 class="contact-column"></h2>
+          </mat-list-item>
+          <!-- Contacts content -->
+          <mat-list-item *ngFor="let contact of contactsOfSelectedStudent" class="row" role="listitem">
+            <h2 class="contact-column">{{ contact.getFirstName() }} {{ contact.getLastName() }}</h2>
+            <h2 class="contact-column">{{ contact.getDescription() }}</h2>
+            <h2 class="contact-column">{{ contact.getAffiliation() }}</h2>
+            <h2 class="contact-column">{{ contact.getEmailAddress() }}</h2>
+            <button mat-icon-button class="contact-column" (click)="deleteContact(contact.getIdContact())">
+              <mat-icon class="trash-icon">delete_outline</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+        <!-- Add Contact button -->
+        <button mat-stroked-button color="primary" class="add-element-button"
+          (click)="displayAddElementDialog('contact')">
+          <span translate>Add new contact</span>
+        </button>
+      </mat-expansion-panel>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="selectedCourse">
+      <app-course-details [selectedStudent]="selectedStudent" [selectedCourse]="selectedCourse"
+        (backToStudent)="setSelectedCourse(null)"></app-course-details>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="return-to-student-list">
+    <button mat-stroked-button color="primary" class="back-course-column" (click)="goToStudentList()">
+      <mat-icon class="back-icon">keyboard_backspace</mat-icon>
+      <span translate>Back to student list</span>
+    </button>
+  </div>
+</div>

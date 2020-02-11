@@ -11,25 +11,27 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="Name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef>
+        <div translate>NameAdminSide</div>
+      </th>
       <td mat-cell *matCellDef="let student"> {{student.getFirstName()}} {{student.getLastName()}} </td>
     </ng-container>
 
     <!-- University Column -->
     <ng-container matColumnDef="University">
-      <th mat-header-cell *matHeaderCellDef> University </th>
+      <th mat-header-cell *matHeaderCellDef translate>University</th>
       <td mat-cell *matCellDef="let student"> {{student.getUniversity()}} </td>
     </ng-container>
 
     <!-- Last connexion Column -->
     <ng-container matColumnDef="Last connection">
-      <th mat-header-cell *matHeaderCellDef> Last connection </th>
+      <th mat-header-cell *matHeaderCellDef translate>LastConnectionAdminSide</th>
       <td mat-cell *matCellDef="let student"> {{student.getLastConnection()}} </td>
     </ng-container>
 
     <!-- Entrant/Leaving Column -->
     <ng-container matColumnDef="Entrant/Leaving">
-      <th mat-header-cell *matHeaderCellDef> Entrant / Leaving </th>
+      <th mat-header-cell *matHeaderCellDef translate>Entrant / Leaving</th>
       <td mat-cell *matCellDef="let student">
         <p *ngIf="student.getIsEntrant() == true"> E </p>
         <p *ngIf="student.getIsEntrant() == false"> L </p>
@@ -54,11 +56,13 @@
 </div>
 
 <div class="bottomButtons">
-  <mat-slide-toggle class="example-margin" color="primary" (click)="displayArchivedStudents()">Display archived
-    students</mat-slide-toggle>
+  <mat-slide-toggle color="primary" (click)="displayArchivedStudents()" ><span translate>Display archived students</span></mat-slide-toggle>
 
   <div class="leftButtons">
-    <button mat-stroked-button color="primary" (click)="archiveStudents()">Archive</button>
-    <button mat-raised-button color="primary" (click)="addStudent()">Add student</button>
+    <button mat-stroked-button color="primary" *ngIf="!areDisplayArchived" (click)="archiveStudents()"
+      [disabled]="checkedStudents.length === 0">Archive</button>
+    <button mat-stroked-button color="primary" *ngIf="areDisplayArchived" (click)="archiveStudents()"
+      [disabled]="checkedStudents.length === 0">Disarchive</button>
+    <button mat-raised-button color="primary" (click)="addStudent()" ><span translate>Add student</span></button>
   </div>
 </div>

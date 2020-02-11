@@ -1,5 +1,11 @@
+<<<<<<< Updated upstream
 import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+=======
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login/login.service';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-header',
@@ -8,15 +14,22 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() userInput = new Input();
+  @Input() fullNameUser: string;
+  @Output() setLanguage: EventEmitter<string> = new EventEmitter<string>();
 
   private currentLanguage: string;
   private languages: string[];
 
+  constructor(private readonly router: Router, private readonly loginService: LoginService) {
+  }
 
   ngOnInit() {
-    this.currentLanguage = 'English';
-    this.languages = ['English', 'Francais', 'Italiano'];
+    if (localStorage.getItem('language') === null) {
+      this.currentLanguage = 'en';
+    } else {
+      this.currentLanguage = localStorage.getItem('language');
+    }
+    this.languages = ['en', 'fr'];
   }
 
   changeLanguage(event): void {
@@ -24,8 +37,9 @@ export class HeaderComponent implements OnInit {
     this.currentLanguage = event.value;
   }
 
-  constructor(private translate: TranslateService) {
-    translate.setDefaultLang('en');
+  switchLanguage(event) {
+    this.setLanguage.emit(event.value);
+    localStorage.setItem('language', event.value);
   }
 
   switchLanguage(language: string) {

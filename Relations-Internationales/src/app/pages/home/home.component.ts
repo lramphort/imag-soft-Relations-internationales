@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { SimulatorService } from '../../services/simulator/simulator.service';
-import { Person } from 'src/app/models/person';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Administrator } from 'src/app/models/administrator';
 
 @Component({
@@ -14,7 +12,17 @@ export class HomeComponent implements OnInit {
   private user: Person;
   private isAdministrator: any;
 
-  constructor(private router: Router, private simulator: SimulatorService) { }
+  selectedStudent: Student;
+  coursesOfSelectedStudent: Course[];
+  contactsOfSelectedStudent: Contact[];
+  dailyTopicsOfSelectedStudent: DailyTopic[];
+
+  @Output() setLanguage: EventEmitter<string> = new EventEmitter<string>();
+
+
+  constructor(private readonly activatedRoute: ActivatedRoute,
+    private readonly studentService: StudentService, private translate: TranslateService) {
+  }
 
   ngOnInit() {
     console.log('Welcome to the home component !');
@@ -27,7 +35,7 @@ export class HomeComponent implements OnInit {
     this.isAdministrator = this.user instanceof Administrator;
   }
 
-  navigateTo(route: string) {
-    this.router.navigate([route]);
+  switchLanguage(event) {
+    this.setLanguage.emit(event);
   }
 }
