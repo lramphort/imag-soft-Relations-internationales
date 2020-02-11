@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Administrator } from 'src/app/models/administrator';
 import { AdministratorService } from 'src/app/services/back/administrator.service';
@@ -26,9 +26,12 @@ export class HomeComponent implements OnInit {
   contactsOfSelectedStudent: Contact[];
   dailyTopicsOfSelectedStudent: DailyTopic[];
 
+  @Output() setLanguage: EventEmitter<string> = new EventEmitter<string>();
+
 
   constructor(private readonly activatedRoute: ActivatedRoute,
-    private readonly studentService: StudentService, private translate: TranslateService) { }
+    private readonly studentService: StudentService, private translate: TranslateService) {
+  }
 
   ngOnInit() {
     this.isAdministrator = localStorage.getItem('type') === 'administrator';
@@ -51,8 +54,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  switchLanguage(event){
-   //this.translate.use(event);
-
+  switchLanguage(event) {
+    this.setLanguage.emit(event);
   }
 }

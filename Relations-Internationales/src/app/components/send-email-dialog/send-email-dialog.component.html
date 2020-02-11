@@ -8,14 +8,14 @@
         <div class="object-field">
           <h3>Object</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="Enter the object" [(ngModel)]="object" name="emailObject">
+            <input matInput type="text" placeholder="{{'Enter the object'| translate}}" [(ngModel)]="object" name="emailObject">
           </mat-form-field>
         </div>
         <!-- Field Body -->
         <div class="body-field">
           <h3>Body</h3>
           <mat-form-field>
-            <textarea matInput placeholder="Enter a body" name="emailBody" [(ngModel)]="body"></textarea>
+            <textarea matInput placeholder="{{'Enter a body'| translate}}" name="emailBody" [(ngModel)]="body"></textarea>
           </mat-form-field>
         </div>
 

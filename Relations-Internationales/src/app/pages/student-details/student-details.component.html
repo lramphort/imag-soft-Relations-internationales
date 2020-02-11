@@ -1,5 +1,5 @@
 <!-- Header banner -->
-<app-header [fullNameUser]="fullNameUser"></app-header>
+<app-header [fullNameUser]="fullNameUser" (setLanguage)="switchLanguage($event)"></app-header>
 <div #contentPdf>
   <mat-card>
     <!-- Header -->
@@ -15,21 +15,21 @@
         </div>
         <!-- Last connection -->
         <div class="student-connection">
-          <h2 *ngIf="selectedStudent.getLastConnection()">Last connection : {{ selectedStudent.getLastConnection() |
+          <h2 *ngIf="selectedStudent.getLastConnection()"><span translate>Last connection</span> : {{ selectedStudent.getLastConnection() |
           date: 'dd-MM-yyyy' }}</h2>
-          <h2 *ngIf="!selectedStudent.getLastConnection()">Last connection : /</h2>
+          <h2 *ngIf="!selectedStudent.getLastConnection()"><span translate>Last connection</span> : /</h2>
           <h3 class="contact" (click)="displaySendEmailDialog()">Contact</h3>
         </div>
         <!-- University -->
         <div class="student-university">
           <h2 class="university">{{ selectedStudent.getUniversity() }}</h2>
-          <h3 *ngIf="selectedStudent.getIsEntrant() === 'true'"> Incoming student</h3>
-          <h3 *ngIf="selectedStudent.getIsEntrant() === 'false'"> Outgoing student</h3>
-          <button *ngIf="!selectedCourse" mat-stroked-button (click)="generatePDF()">Generate PDF</button>
+          <h3 *ngIf="selectedStudent.getIsEntrant() === 'true'" translate>Incoming student</h3>
+          <h3 *ngIf="selectedStudent.getIsEntrant() === 'false'" translate>Outgoing student</h3>
+          <button *ngIf="!selectedCourse" mat-stroked-button (click)="generatePDF()"><span translate>Generate PDF</span></button>
           <br />
           <button mat-stroked-button *ngIf="!selectedCourse" (click)="setIsLearningAgreementValid()"
             [disabled]="selectedStudent.getIsLearningAgreementValid() === 'true' && !isLAPending">
-            <a>Valid learning agreement</a>
+            <a translate>Valid learning agreement</a>
           </button>
           <button mat-stroked-button *ngIf="!selectedCourse" class="redColor" (click)="setIsLearningAgreementValid()"
             [disabled]="selectedStudent.getIsLearningAgreementValid() !== 'true' || isLAPending">
@@ -47,15 +47,15 @@
         <!-- Panel header -->
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <h2>Learning agreement</h2>
+            <h2 translate>Learning agreement</h2>
           </mat-panel-title>
           <!-- Panel description -->
           <mat-panel-description>
             <h3 *ngIf="selectedStudent.getIsLearningAgreementValid() === 'true' && !isLAPending" class="greenColor">
-              Learning agreement : valid - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
+              <span translate>Learning agreement</span> : <span translate>valid</span> - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
             </h3>
             <h3 *ngIf="selectedStudent.getIsLearningAgreementValid() === 'false' && !isLAPending" class="redColor">
-              Learning agreement : unvalid - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
+              <span translate>Learning agreement</span> : <span translate>unvalid</span> - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
             </h3>
             <h3 *ngIf="isLAPending" class="orangeColor">
               Learning agreement : pending - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
@@ -67,11 +67,11 @@
         <mat-list role="list">
           <!-- Column header -->
           <mat-list-item class="header" role="listitem">
-            <h2 class="course-column">Name</h2>
-            <h2 class="course-column">ECTS</h2>
-            <h2 class="course-column">Description</h2>
-            <h2 class="course-column">Semestre</h2>
-            <h2 class="course-column">Added at</h2>
+            <h2 class="course-column" translate>Name</h2>
+            <h2 class="course-column" translate>ECTS</h2>
+            <h2 class="course-column" translate>Description</h2>
+            <h2 class="course-column" translate>Semester</h2>
+            <h2 class="course-column" translate>Added at</h2>
             <h2 class="course-column"></h2>
           </mat-list-item>
           <!-- Courses content -->
@@ -94,7 +94,7 @@
         <div class="courses-footer">
           <button mat-stroked-button color="primary" class="add-element-button"
             (click)="displayAddElementDialog('course')">
-            Add new course
+            <span translate>Add new course</span>
           </button>
         </div>
       </mat-expansion-panel>
@@ -104,18 +104,18 @@
         <!-- Panel header -->
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <h2>History</h2>
+            <h2 translate>History</h2>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <!-- Courses list -->
         <mat-list role="list">
           <!-- Column header -->
           <mat-list-item class="header" role="listitem">
-            <h2 class="course-column">Name</h2>
-            <h2 class="course-column">ECTS</h2>
-            <h2 class="course-column">Description</h2>
-            <h2 class="course-column">Semestre</h2>
-            <h2 class="course-column">Date</h2>
+            <h2 class="course-column" translate>Name</h2>
+            <h2 class="course-column" translate>ECTS</h2>
+            <h2 class="course-column" translate>Description</h2>
+            <h2 class="course-column" translate>Semester</h2>
+            <h2 class="course-column" translate>Date</h2>
             <h2 class="course-column"></h2>
           </mat-list-item>
           <!-- Courses content -->
@@ -149,17 +149,17 @@
         <!-- Panel header -->
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <h2>Courses</h2>
+            <h2 translate>Courses</h2>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <!-- Courses list -->
         <mat-list role="list">
           <!-- Column header -->
           <mat-list-item class="header" role="listitem">
-            <h2 class="course-column--large">Name</h2>
-            <h2 class="course-column--large">ECTS</h2>
-            <h2 class="course-column--large">Description</h2>
-            <h2 class="course-column--large">Last mark</h2>
+            <h2 class="course-column--large" translate>Name</h2>
+            <h2 class="course-column--large" translate>ECTS</h2>
+            <h2 class="course-column--large" translate>Description</h2>
+            <h2 class="course-column--large" translate>Last mark</h2>
           </mat-list-item>
           <!-- Courses content -->
           <mat-list-item *ngFor="let course of coursesOfSelectedStudentNotRejected; index as indexCourse"
@@ -178,7 +178,7 @@
         <div class="courses-footer">
           <button mat-stroked-button color="primary" class="add-element-button"
             (click)="displayAddElementDialog('course')">
-            Add new course
+            <span translate>Add new course</span>
           </button>
         </div>
       </mat-expansion-panel>
@@ -188,16 +188,16 @@
         <!-- Panel header -->
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <h2>Topics</h2>
+            <h2 translate>Topics</h2>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <!-- Topics list -->
         <mat-list role="list">
           <!-- Column header -->
           <mat-list-item class="header" role="listitem">
-            <h2 class="dailyTopic-column">Title</h2>
-            <h2 class="dailyTopic-column">Date</h2>
-            <h2 class="dailyTopic-column">Description</h2>
+            <h2 class="dailyTopic-column" translate>Title</h2>
+            <h2 class="dailyTopic-column" translate>Date</h2>
+            <h2 class="dailyTopic-column" translate>Description</h2>
             <h2 class="dailyTopic-column"></h2>
           </mat-list-item>
           <!-- Topics content -->
@@ -213,7 +213,7 @@
         <!-- Add Topic button -->
         <button mat-stroked-button color="primary" class="add-element-button"
           (click)="displayAddElementDialog('dailyTopic')">
-          Add new daily topic
+          <span translate>Add new daily topic</span>
         </button>
       </mat-expansion-panel>
 
@@ -229,10 +229,10 @@
         <mat-list role="list">
           <!-- Column header -->
           <mat-list-item class="header" role="listitem">
-            <h2 class="contact-column">Name</h2>
-            <h2 class="contact-column">Description</h2>
-            <h2 class="contact-column">Affiliation</h2>
-            <h2 class="contact-column">Email address</h2>
+            <h2 class="contact-column" translate>Name</h2>
+            <h2 class="contact-column" translate>Description</h2>
+            <h2 class="contact-column" translate>Affiliation</h2>
+            <h2 class="contact-column" translate>Email address</h2>
             <h2 class="contact-column"></h2>
           </mat-list-item>
           <!-- Contacts content -->
@@ -249,7 +249,7 @@
         <!-- Add Contact button -->
         <button mat-stroked-button color="primary" class="add-element-button"
           (click)="displayAddElementDialog('contact')">
-          Add new contact
+          <span translate>Add new contact</span>
         </button>
       </mat-expansion-panel>
     </mat-card-content>
@@ -263,7 +263,7 @@
   <div class="return-to-student-list">
     <button mat-stroked-button color="primary" class="back-course-column" (click)="goToStudentList()">
       <mat-icon class="back-icon">keyboard_backspace</mat-icon>
-      Back to student list
+      <span translate>Back to student list</span>
     </button>
   </div>
 </div>

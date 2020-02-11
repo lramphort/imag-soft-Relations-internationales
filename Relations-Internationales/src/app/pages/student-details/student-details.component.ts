@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Output, EventEmitter} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from 'src/app/models/student';
 import { Course } from 'src/app/models/course';
@@ -7,6 +7,7 @@ import { DailyTopic } from 'src/app/models/daily-topic';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddCourseDialogComponent } from 'src/app/components/add-element-dialog/add-course-dialog/add-course-dialog.component';
 import { AddContactDialogComponent } from 'src/app/components/add-element-dialog/add-contact-dialog/add-contact-dialog.component';
+// tslint:disable-next-line:max-line-length
 import { AddDailyTopicDialogComponent } from 'src/app/components/add-element-dialog/add-daily-topic-dialog/add-daily-topic-dialog.component';
 import { SendEmailDialogComponent } from 'src/app/components/send-email-dialog/send-email-dialog.component';
 import { MarkService } from 'src/app/services/back/mark.service';
@@ -28,6 +29,7 @@ import * as html2canvas from 'html2canvas';
 export class StudentDetailsComponent implements OnInit {
 
   @ViewChild('contentPdf') contentPdf: ElementRef;
+  @Output() setLanguage: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
@@ -293,5 +295,9 @@ export class StudentDetailsComponent implements OnInit {
       });
 
     this.marks.push({ idCourse: '', marks: [] });
+  }
+
+  switchLanguage($event: string) {
+    this.setLanguage.emit($event);
   }
 }

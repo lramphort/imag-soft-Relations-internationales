@@ -1,5 +1,5 @@
 <div class="dialog-content">
-  <h2 class="dialog-title">Add a new poll</h2>
+  <h2 class="dialog-title" translate>Add a new poll</h2>
 
   <form class="add-poll-form">
     <div class="form-fields">
@@ -8,14 +8,14 @@
         <div class="question-field">
           <h3 [class.invalid-field]="!isFormValid && !isQuestionValid">Question</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="Enter the name" [(ngModel)]="question" name="pollQuestion">
+            <input matInput type="text" placeholder="{{'Enter the name' | translate}}" [(ngModel)]="question" name="pollQuestion">
           </mat-form-field>
         </div>
         <!-- Field Answers -->
         <div class="possible-answer-field">
           <h3 [class.invalid-field]="!isFormValid && !arePossibleAnswersValid">Possible answers</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="Enter a possible answer" name="pollPossibleAnswers" [(ngModel)]="possibleAnswer">
+            <input matInput type="text" placeholder="{{'Enter a possible answer'|translate}}" name="pollPossibleAnswers" [(ngModel)]="possibleAnswer">
           </mat-form-field>
           <button mat-icon-button color="primary" class="add-possible-answer-button" (click)="addPossibleAnswer()">
             <mat-icon>add_circle_outline</mat-icon>

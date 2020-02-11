@@ -1,56 +1,56 @@
 <div class="dialog-content">
-  <h2 class="dialog-title">Add a new contact</h2>
+  <h2 class="dialog-title" translate>Add a new contact</h2>
 
   <form class="add-contact-form">
     <div class="form-fields">
       <div class="column">
         <!-- Field First Name -->
         <div class="first-name-field">
-          <h3 [class.invalid-field]="!isFormValid && !isFirstNameValid">First Name</h3>
+          <h3 [class.invalid-field]="!isFormValid && !isFirstNameValid" translate>First Name</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="Enter the first name" [(ngModel)]="firstName" name="contactFirstName">
+            <input matInput type="text" placeholder="{{'Enter the first name' | translate}}" [(ngModel)]="firstName" name="contactFirstName">
           </mat-form-field>
         </div>
         <!-- Field Phone Number -->
         <div class="phone-number-field">
-          <h3 [class.invalid-field]="!isFormValid && !isPhoneNumberValid">Phone Number</h3>
+          <h3 [class.invalid-field]="!isFormValid && !isPhoneNumberValid" translate>Phone Number</h3>
           <mat-form-field>
-            <input matInput type="tel" placeholder="Enter the phone number" [(ngModel)]="phoneNumber" name="contactPhoneNumber">
+            <input matInput type="tel" placeholder="{{'Enter the phone number'| translate}}" [(ngModel)]="phoneNumber" name="contactPhoneNumber">
           </mat-form-field>
         </div>
         <!-- Field Affiliation -->
         <div class="affiliation-field">
           <h3 [class.invalid-field]="!isFormValid && !isAffiliationValid">Affiliation</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="Enter the affiliation" [(ngModel)]="affiliation" name="contactAffiliation">
+            <input matInput type="text" placeholder="{{'Enter the affiliation'| translate}}" [(ngModel)]="affiliation" name="contactAffiliation">
           </mat-form-field>
         </div>
       </div>
       <div class="column">
         <!-- Field Last Name -->
         <div class="last-name-field">
-          <h3 [class.invalid-field]="!isFormValid && !isLastNameValid">Last Name</h3>
+          <h3 [class.invalid-field]="!isFormValid && !isLastNameValid" translate>Last Name</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="Enter the last name" [(ngModel)]="lastName" name="contactLastName">
+            <input matInput type="text" placeholder="{{'Enter the last name'| translate}}" [(ngModel)]="lastName" name="contactLastName">
           </mat-form-field>
         </div>
         <!-- Field Email Address -->
         <div class="email-address-field">
-          <h3 [class.invalid-field]="!isFormValid && !isEmailAddressValid">Email Address</h3>
+          <h3 [class.invalid-field]="!isFormValid && !isEmailAddressValid" translate>Email Address</h3>
           <mat-form-field>
-            <input matInput type="email" placeholder="Enter the email address" [(ngModel)]="emailAddress" name="contactEmailAddress">
+            <input matInput type="email" placeholder="{{'Enter the email address'|translate}}" [(ngModel)]="emailAddress" name="contactEmailAddress">
           </mat-form-field>
         </div>
         <!-- Field Description -->
         <div class="description-field">
           <h3>Description</h3>
           <mat-form-field>
-            <textarea matInput placeholder="Enter the description" [(ngModel)]="description" name="contactDescription"></textarea>
+            <textarea matInput placeholder="{{'Enter the description'| translate}}" [(ngModel)]="description" name="contactDescription"></textarea>
           </mat-form-field>
         </div>
       </div>
     </div>
     <!-- Button Create -->
-    <button mat-raised-button color="primary" class="create-button" (click)="createContact()">Create</button>
+    <button mat-raised-button color="primary" class="create-button" (click)="createContact()"><span translate>Create</span></button>
   </form>
 </div>

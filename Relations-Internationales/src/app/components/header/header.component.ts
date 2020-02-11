@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { EventEmitter } from 'events';
 import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -12,17 +10,20 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class HeaderComponent implements OnInit {
 
   @Input() fullNameUser: string;
-  @Output() setLanguage = new EventEmitter<string>();
+  @Output() setLanguage: EventEmitter<string> = new EventEmitter<string>();
 
   currentLanguage: string;
   languages: string[];
 
-  constructor(private readonly router: Router, private translate: TranslateService, private readonly loginService: LoginService) {
-    translate.setDefaultLang('en');
+  constructor(private readonly router: Router, private readonly loginService: LoginService) {
   }
 
   ngOnInit() {
-    this.currentLanguage = 'en';
+    if (localStorage.getItem('language') === null) {
+      this.currentLanguage = 'en';
+    } else {
+      this.currentLanguage = localStorage.getItem('language');
+    }
     this.languages = ['en', 'fr'];
   }
 
@@ -31,9 +32,8 @@ export class HeaderComponent implements OnInit {
   }
 
   switchLanguage(event) {
-    this.translate.use(event.value);
     this.setLanguage.emit(event.value);
-
+    localStorage.setItem('language', event.value);
   }
 
   navigateTo(route: string) {
