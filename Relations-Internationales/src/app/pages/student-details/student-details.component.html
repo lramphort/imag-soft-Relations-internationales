@@ -33,7 +33,7 @@
           </button>
           <button mat-stroked-button *ngIf="!selectedCourse" class="redColor" (click)="setIsLearningAgreementValid()"
             [disabled]="selectedStudent.getIsLearningAgreementValid() !== 'true' || isLAPending">
-            <a>Unvalid learning agreement</a>
+            <a translate>Unvalid learning agreement</a>
           </button>
         </div>
       </div>
@@ -58,7 +58,7 @@
               <span translate>Learning agreement</span> : <span translate>unvalid</span> - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
             </h3>
             <h3 *ngIf="isLAPending" class="orangeColor">
-              Learning agreement : pending - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
+              <span translate>Learning agreement</span> : <span translate>pending</span> - {{ selectedStudent.getDateLearningAgreementValid() | date: 'dd-MM-yyyy' }}
             </h3>
           </mat-panel-description>
 
@@ -164,14 +164,14 @@
           <!-- Courses content -->
           <mat-list-item *ngFor="let course of coursesOfSelectedStudentNotRejected; index as indexCourse"
             class="course-row" role="listitem">
-            <h2 class="course-column--large" (click)="setSelectedCourse(course)">{{ course.getName() }}</h2>
-            <h2 class="course-column--large" (click)="setSelectedCourse(course)">{{ course.getEcts() }}</h2>
-            <h2 class="course-column--large" (click)="setSelectedCourse(course)">{{ course.getDescription() }}</h2>
-            <h2 class="course-column--large" *ngIf="marks[indexCourse] && marks[indexCourse].marks.length > 0"
-              (click)="setSelectedCourse(course)">{{
-            marks[indexCourse].marks[marks[indexCourse].marks.length-1].getValueMark() }}</h2>
-            <h2 class="course-column--large" *ngIf="marks[indexCourse] && marks[indexCourse].marks.length === 0"
-              (click)="setSelectedCourse(course)">/</h2>
+            <h2 class="course-column--large">
+              <button (click)="setSelectedCourse(course)" mat-raised-button>{{ course.getName() }}</button>
+            </h2>
+            <h2 class="course-column--large">{{ course.getEcts() }}</h2>
+            <h2 class="course-column--large">{{ course.getDescription() }}</h2>
+            <h2 class="course-column--large" *ngIf="marks[indexCourse] && marks[indexCourse].marks.length > 0">
+              {{marks[indexCourse].marks[marks[indexCourse].marks.length-1].getValueMark() }}</h2>
+            <h2 class="course-column--large" *ngIf="marks[indexCourse] && marks[indexCourse].marks.length === 0">/</h2>
           </mat-list-item>
         </mat-list>
         <!-- Add Course button -->

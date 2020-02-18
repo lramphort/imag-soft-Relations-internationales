@@ -2,8 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-    MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule, MatTableModule,
-    MatPaginatorModule, MatIconModule, MatListModule, MatDialogModule, MatSelectModule, MatCheckboxModule, MatSlideToggleModule
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCardModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatIconModule,
+  MatListModule,
+  MatDialogModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatSlideToggleModule,
+  MatButtonToggleModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTreeModule } from '@angular/material/tree';
@@ -134,40 +145,41 @@ export function HttpLoaderFactory(http: HttpClient) {
         SondageModalComponent,
         AddMarkModalComponent,
     ],
-    imports: [
-        BrowserModule,
-        RouterModule.forRoot(appRoutes, { useHash: true }),
-        HttpClientModule,
-        // Angular Material modules
-        BrowserAnimationsModule,
-        FormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCardModule,
-        MatIconModule,
-        MatTreeModule,
-        MatExpansionModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatListModule,
-        MatDialogModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        MatSlideToggleModule,
-        BrowserModule,
-        MatRadioModule,
-        HttpClientModule,
-        MatTabsModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            },
-          isolate: false
-        })
-    ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes, {useHash: true}),
+    HttpClientModule,
+    // Angular Material modules
+    BrowserAnimationsModule,
+    FormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatIconModule,
+    MatTreeModule,
+    MatExpansionModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatListModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    BrowserModule,
+    MatRadioModule,
+    HttpClientModule,
+    MatTabsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      isolate: false
+    }),
+    MatButtonToggleModule
+  ],
     providers: [
         DatabaseService,
         SimulatorService,

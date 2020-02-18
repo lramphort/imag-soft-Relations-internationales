@@ -18,4 +18,21 @@ export class AddCourseModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  isFieldFiled(el: any) {
+    return (el as string).length > 0;
+  }
+
+  save() {
+    if (this.isFormValid()) {
+      this.dialogRef.close(this.data);
+    }
+  }
+  isFormValid() {
+    return this.isFieldFiled(this.data.name) &&
+      this.isFieldFiled(this.data.ects) &&
+      this.isFieldFiled(this.data.description) &&
+      this.isFieldFiled(this.data.codeUE) &&
+      this.isFieldFiled(this.data.semester) &&
+      this.isFieldFiled(this.data.teacherName);
+  }
 }

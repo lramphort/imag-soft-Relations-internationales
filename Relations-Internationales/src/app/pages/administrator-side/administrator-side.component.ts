@@ -121,6 +121,8 @@ export class AdministratorSideComponent implements OnInit {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.autoFocus = true;
     matDialogConfig.width = '60%';
+    matDialogConfig.maxHeight = '90vh';
+    matDialogConfig.disableClose = true;
 
     dialogRef = this.dialog.open(AddStudentDialogComponent, matDialogConfig);
     dialogRef.afterClosed().subscribe(result => {

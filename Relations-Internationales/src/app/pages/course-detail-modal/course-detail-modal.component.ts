@@ -62,7 +62,7 @@ export class CourseDetailModalComponent implements OnInit {
 
   sendAnswer(poll: Poll, idPoll: string, index: number, text: string) {
     this.textValue = text;
-    if (this.textValue != '') {
+    if (this.textValue !== '') {
       this.pollService.update_poll(this.textValue, poll.getIdPoll()).subscribe(() => {
         this.polls.splice(index, 1);
       });
@@ -75,13 +75,15 @@ export class CourseDetailModalComponent implements OnInit {
   }
 
   addMark() {
-    var newData = this.marks;
-    const dialogRef = this.dialog.open(AddMarkModalComponent, {
+    const newData = this.marks;
+    const dialog = this.dialog.open(AddMarkModalComponent, {
       width: '250px',
+      maxHeight: '90vh',
+      disableClose: true,
       data: { mark: this.mark, typeMark: this.typeMark }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe(result => {
       const newMark = new Mark({
         idMark: null,
         idCourse: this.data.course.getIdCourse(),
@@ -89,12 +91,15 @@ export class CourseDetailModalComponent implements OnInit {
         typeMark: result.typeMark,
         valueMark: result.mark
       });
-
       newData.push(newMark);
       this.marks = newData;
       this.markService.addMark(newMark).subscribe();
 
     });
+    this.markService.getMarksByStudent(this.data.course.getIdCourse(), this.data.idStudent).subscribe(
+      result => {
+        console.log(result);
+      });
   }
 
 }

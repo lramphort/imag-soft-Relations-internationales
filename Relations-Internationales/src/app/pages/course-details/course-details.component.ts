@@ -52,6 +52,8 @@ export class CourseDetailsComponent implements OnInit {
     matDialogConfig.autoFocus = true;
     matDialogConfig.width = '60%';
     matDialogConfig.data = this.selectedCourse;
+    matDialogConfig.disableClose = true;
+    matDialogConfig.maxHeight = '90vh';
 
     dialogRef = this.dialog.open(AddPollDialogComponent, matDialogConfig);
     dialogRef.afterClosed().subscribe(result => {

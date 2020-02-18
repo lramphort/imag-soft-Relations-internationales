@@ -30,7 +30,7 @@
         </div>
         <!-- Field Is Entrant -->
         <div class="is-entrant-field">
-          <mat-checkbox [(ngModel)]="isEntrant" name="studentIsEntrant"><span translate>Is entrant</span> ?</mat-checkbox>
+          <mat-checkbox [(ngModel)]="isEntrant" name="studentIsEntrant"><span *ngIf="isEntrant" translate>Is entrant</span><span *ngIf="!isEntrant" translate>Is outgoing</span></mat-checkbox>
         </div>
       </div>
       <div class="column">
@@ -56,10 +56,6 @@
             <input matInput type="date" placeholder="{{ 'Enter the birth date' | translate }}" [(ngModel)]="birthDate"
               name="studentBirthDate">
           </mat-form-field>
-        </div>
-        <!-- Login / password note -->
-        <div class="login-password-note">
-          <p><span translate>The default login is stucked firstname and lastname</span> ({{ firstName }}{{ lastName }})</p>
         </div>
       </div>
     </div>

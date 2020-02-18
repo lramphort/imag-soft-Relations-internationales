@@ -1,54 +1,56 @@
 <div class="pageBody">
   <h1 translate class ="titre" >Student profile</h1>
   <h3 *ngIf="selectedStudent.getIsLearningAgreementValid() === 'true'" class="greenColor">
-    Learning agreement : valid - {{ selectedStudent.getDateLearningAgreementValid() | date: 'medium' }}
+    <span translate>Learning agreement</span> : <span translate>valid</span> - {{ selectedStudent.getDateLearningAgreementValid() | date: 'medium' }}
   </h3>
   <h3 *ngIf="selectedStudent.getIsLearningAgreementValid() === 'false'" class="redColor">
-    Learning agreement : unvalid
+    <span translate>Learning agreement</span> : <span translate>unvalid</span>
   </h3>
   <mat-tab-group>
-      <mat-tab label="En cours"> 
-        <mat-expansion-panel [expanded]="true">
+      <mat-tab label="{{'Current'|translate}}">
+        <mat-expansion-panel [(expanded)]="markExpanded">
           <mat-expansion-panel-header>
-            <mat-panel-title  translate>
-              <div translate>Marks</div>
+            <mat-panel-title>
+              <div translate>Courses</div>
             </mat-panel-title>
             </mat-expansion-panel-header>
             <table mat-table [dataSource]="dataSourceMark" class="mat-elevation-z8">
                 <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef><div translate >Mark</div></th>
-                  <td mat-cell *matCellDef="let element" (click)="openDetailCourse(element)"> {{element.getName()}} </td>
+                  <th mat-header-cell *matHeaderCellDef><div translate>Name</div></th>
+                  <td mat-cell *matCellDef="let element" (click)="openDetailCourse(element)">
+                    <button mat-raised-button>{{element.getName()}} <mat-icon>assignment_turned_in</mat-icon></button>
+                  </td>
                 </ng-container>
 
                 <ng-container matColumnDef="ects">
                   <th mat-header-cell *matHeaderCellDef ><div translate >ECTS</div></th>
                   <td mat-cell *matCellDef="let element"> {{element.getEcts()}} </td>
-                </ng-container> 
+                </ng-container>
 
                 <ng-container matColumnDef="description">
                   <th mat-header-cell *matHeaderCellDef><div translate >Description</div></th>
                   <td mat-cell *matCellDef="let element" > {{element.getDescription()}} </td>
-                </ng-container> 
+                </ng-container>
 
                 <ng-container matColumnDef="codeUE">
                   <th mat-header-cell *matHeaderCellDef><div translate >Code UE</div></th>
                   <td mat-cell *matCellDef="let element"> {{element.getCodeUE()}} </td>
                 </ng-container>
-                
+
                 <ng-container matColumnDef="semester">
                   <th mat-header-cell *matHeaderCellDef><div translate >Semester</div></th>
                   <td mat-cell *matCellDef="let element"> {{element.getSemester()}}</td>
                 </ng-container>
-                
+
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef>...</th>
-                    <td mat-cell *matCellDef="let element"> 
+                    <td mat-cell *matCellDef="let element">
                       <button mat-icon-button (click)="delCourse(element)">
                         <mat-icon>delete</mat-icon>
-                      </button> 
+                      </button>
                     </td>
                   </ng-container>
-                
+
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsMark"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumnsMark;"></tr>
             </table>
@@ -57,11 +59,11 @@
             </button>
         </mat-expansion-panel>
       </mat-tab>
-      <mat-tab label="Historique"> 
-          <mat-expansion-panel [expanded]="true">
+      <mat-tab label="{{'Historic'|translate}}">
+          <mat-expansion-panel [(expanded)]="markExpanded">
               <mat-expansion-panel-header>
-                <mat-panel-title  translate>
-                  <div translate>Marks</div>
+                <mat-panel-title>
+                  <div translate>Courses</div>
                 </mat-panel-title>
                 </mat-expansion-panel-header>
                 <table mat-table [dataSource]="dataSourceNotValidated" class="mat-elevation-z8">
@@ -69,27 +71,27 @@
                       <th mat-header-cell *matHeaderCellDef><div translate >Mark</div></th>
                       <td mat-cell *matCellDef="let element" (click)="openDetailCourse(element)"> {{element.getName()}} </td>
                     </ng-container>
-    
+
                     <ng-container matColumnDef="ects">
                       <th mat-header-cell *matHeaderCellDef ><div translate >ECTS</div></th>
                       <td mat-cell *matCellDef="let element"> {{element.getEcts()}} </td>
-                    </ng-container> 
-    
+                    </ng-container>
+
                     <ng-container matColumnDef="description">
                       <th mat-header-cell *matHeaderCellDef><div translate >Description</div></th>
                       <td mat-cell *matCellDef="let element" > {{element.getDescription()}} </td>
-                    </ng-container> 
-    
+                    </ng-container>
+
                     <ng-container matColumnDef="codeUE">
                       <th mat-header-cell *matHeaderCellDef><div translate >Code UE</div></th>
                       <td mat-cell *matCellDef="let element"> {{element.getCodeUE()}} </td>
                     </ng-container>
-                    
+
                     <ng-container matColumnDef="semester">
                       <th mat-header-cell *matHeaderCellDef><div translate >Semester</div></th>
                       <td mat-cell *matCellDef="let element"> {{element.getSemester()}} </td>
-                    </ng-container>    
-                    
+                    </ng-container>
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsNotValidated"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumnsNotValidated;"></tr>
                 </table>
@@ -99,7 +101,7 @@
             </mat-expansion-panel>
       </mat-tab>
   </mat-tab-group>
-  
+
 
   <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
@@ -116,7 +118,7 @@
         <ng-container matColumnDef="dateDailyTopic">
           <th mat-header-cell *matHeaderCellDef><div translate>Date</div></th>
           <td mat-cell *matCellDef="let element"> {{element.getDateDailyTopic()}} </td>
-        </ng-container> 
+        </ng-container>
 
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef><div translate>Description</div></th>
@@ -125,14 +127,14 @@
 
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>...</th>
-          <td mat-cell *matCellDef="let element"> 
-            <button mat-icon-button (click)="delTopicsLife(element)">
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="delTopicCourse(element)">
               <mat-icon>delete</mat-icon>
-            </button> 
+            </button>
           </td>
         </ng-container>
- 
-        
+
+
         <tr mat-header-row *matHeaderRowDef="displayedColumnsPL"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsPL;"></tr>
     </table>
@@ -142,49 +144,9 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel [expanded]="true">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <div >Topics Courses</div>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <table mat-table [dataSource]="dataSourceTC" class="mat-elevation-z8">
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef><div translate>Titre</div></th>
-          <td mat-cell *matCellDef="let element"> {{element.getName()}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="dateDailyTopic">
-          <th mat-header-cell *matHeaderCellDef><div translate>Date</div></th>
-          <td mat-cell *matCellDef="let element"> {{element.getDateDailyTopic()}} </td>
-        </ng-container> 
-
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef><div translate>Description</div></th>
-          <td mat-cell *matCellDef="let element" > {{element.getDescription()}} </td>
-        </ng-container> 
-
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>...</th>
-          <td mat-cell *matCellDef="let element"> 
-            <button mat-icon-button (click)="delTopicCourse(element)">
-              <mat-icon>delete</mat-icon>
-            </button> 
-          </td>
-        </ng-container>
- 
-        
-        <tr mat-header-row *matHeaderRowDef="displayedTopicsCourses"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedTopicsCourses;"></tr>
-    </table>
-    <button mat-icon-button (click)="addTopicsCourses()">
-      <mat-icon>add</mat-icon>
-    </button>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <div translate>Contact</div> 
+            <div translate>Contact</div>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <table mat-table [dataSource]="dataSourceContact" class="mat-elevation-z8">
@@ -196,27 +158,27 @@
           <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef><div translate>Description</div></th>
             <td mat-cell *matCellDef="let element"> {{element.getDescription()}} </td>
-          </ng-container> 
+          </ng-container>
 
           <ng-container matColumnDef="affiliation">
             <th mat-header-cell *matHeaderCellDef><div translate>Affiliation</div></th>
             <td mat-cell *matCellDef="let element" > {{element.getAffiliation()}} </td>
-          </ng-container> 
+          </ng-container>
 
           <ng-container matColumnDef="emailAddress">
-            <th mat-header-cell *matHeaderCellDef>E-mail</th>
+            <th mat-header-cell *matHeaderCellDef><span translate>Email Address</span></th>
             <td mat-cell *matCellDef="let element"> {{element.getEmailAddress()}} </td>
-          </ng-container> 
-          
+          </ng-container>
+
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef>...</th>
-            <td mat-cell *matCellDef="let element"> 
+            <td mat-cell *matCellDef="let element">
               <button mat-icon-button (click)="delContact(element)">
                 <mat-icon>delete</mat-icon>
-              </button> 
+              </button>
             </td>
           </ng-container>
-          
+
           <tr mat-header-row *matHeaderRowDef="displayedColumnsContact"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumnsContact;"></tr>
       </table>
@@ -224,8 +186,8 @@
         <mat-icon>add</mat-icon>
       </button>
       </mat-expansion-panel>
-  
 
-    
+
+
 </div>
 

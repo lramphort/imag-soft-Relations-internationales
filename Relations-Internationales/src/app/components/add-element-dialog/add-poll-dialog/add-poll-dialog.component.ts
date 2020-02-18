@@ -46,7 +46,7 @@ export class AddPollDialogComponent implements OnInit {
       const newPoll = new Poll({
         idCourse: this.injectedCourse.getIdCourse(),
         idPerson: this.injectedStudent.getIdPerson(),
-        status: 'sent',
+        status: 'sent - envoyé',
         question: this.question,
         answer: null,
         dateAnswer: null

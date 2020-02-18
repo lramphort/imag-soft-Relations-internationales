@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-add-mark-modal',
@@ -8,9 +8,23 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class AddMarkModalComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(public dialog: MatDialogRef<AddMarkModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+  }
+
+  isFieldFiled(el: any) {
+    return (el as string).length > 0;
+  }
+
+  save() {
+    if (this.isFormValid()) {
+      this.dialog.close(this.data);
+    }
+  }
+  isFormValid() {
+    return this.isFieldFiled(this.data.mark) &&
+      this.isFieldFiled(this.data.typeMark);
   }
 
 }

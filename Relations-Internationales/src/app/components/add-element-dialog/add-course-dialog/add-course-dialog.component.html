@@ -6,22 +6,22 @@
       <div class="column">
         <!-- Field Name -->
         <div class="name-field">
-          <h3 [class.invalid-field]="!isFormValid && !isNameValid">Name</h3>
+          <h3 [class.invalid-field]="!isFormValid && !isNameValid"><span translate>Name</span></h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="{{'Enter the name' | translate}}" [(ngModel)]="name" name="courseName">
+            <input matInput type="text" placeholder="{{'Enter the name' | translate}}" [(ngModel)]="name" name="courseName" required>
           </mat-form-field>
         </div>
         <!-- Field ECTS -->
         <div class="ects-field">
           <h3 [class.invalid-field]="!isFormValid && !isEctsValid">ECTS</h3>
           <mat-form-field>
-            <input matInput type="number" onkeydown="return event.keyCode !== 69" placeholder="Enter the ects"
-              [(ngModel)]="ects" name="courseECTS">
+            <input matInput type="number" onkeydown="return event.keyCode !== 69" placeholder="{{'Enter the ects'|translate}}"
+              [(ngModel)]="ects" name="courseECTS" required>
           </mat-form-field>
         </div>
         <!-- Field TeacherEmail -->
         <div class="teacher-email-field">
-          <h3 [class.invalid-field]="!isFormValid && !isTeacherEmailValid" translate>Teacher email address</h3>
+          <h3 translate>Teacher email address</h3>
           <mat-form-field>
             <input matInput type="email" placeholder="{{'Enter the teacher\'s email address'| translate}}" [(ngModel)]="teacherEmail"
               name="courseTeacherEmail">
@@ -39,17 +39,17 @@
         </div>
         <!-- Field TeacherFullName -->
         <div class="teacher-full-name-field">
-          <h3 [class.invalid-field]="!isFormValid && !isTeacherFullNameValid">Teacher full name</h3>
+          <h3 [class.invalid-field]="!isFormValid && !isTeacherFullNameValid"><span translate>Teacher full name</span></h3>
           <mat-form-field>
             <input matInput type="text" placeholder="{{'Enter the teacher\'s full name'| translate}}" [(ngModel)]="teacherFullName"
-              name="courseTeacherFullName">
+              name="courseTeacherFullName" required>
           </mat-form-field>
         </div>
         <!-- Field Semester -->
         <div class="semester-field">
           <h3>Semester</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="{{'Enter the semester'| translate}}" [(ngModel)]="semester" name="courseSemester">
+            <input matInput type="text" placeholder="{{'Enter the semester'| translate}}" [(ngModel)]="semester" name="courseSemester" required>
           </mat-form-field>
         </div>
       </div>

@@ -33,8 +33,8 @@
     <ng-container matColumnDef="Entrant/Leaving">
       <th mat-header-cell *matHeaderCellDef translate>Entrant / Leaving</th>
       <td mat-cell *matCellDef="let student">
-        <p *ngIf="student.getIsEntrant() === 'true'"> Incoming </p>
-        <p *ngIf="student.getIsEntrant() === 'false'"> Outgoing </p>
+        <p *ngIf="student.getIsEntrant() === 'true'"><span translate>Incoming</span></p>
+        <p *ngIf="student.getIsEntrant() === 'false'"><span translate>Outgoing</span></p>
       </td>
     </ng-container>
 

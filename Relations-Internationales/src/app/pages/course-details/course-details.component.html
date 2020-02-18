@@ -1,7 +1,7 @@
 <div class="return-to-student-details">
   <button mat-stroked-button color="primary" class="back-course-column" (click)="goToStudent()">
     <mat-icon class="back-icon">keyboard_backspace</mat-icon>
-    Back to student details
+    <span translate>Back to student details</span>
   </button>
 </div>
 
@@ -11,7 +11,7 @@
 
 <div class="course-description">
   <div class="title">
-    <h2 class="bold">Description</h2>
+    <h2 class="bold"><span translate>Description</span></h2>
   </div>
   <div class="content">
     <h2>{{ selectedCourse.getDescription() }}</h2>
@@ -20,7 +20,7 @@
 
 <div class="course-ects">
   <div class="title">
-    <h2 class="bold">ECTS</h2>
+    <h2 class="bold"><span translate>ECTS</span></h2>
   </div>
   <div class="content">
     <h2>{{ selectedCourse.getEcts() }}</h2>
@@ -29,7 +29,7 @@
 
 <div class="course-semester">
   <div class="title">
-    <h2 class="bold">Semester</h2>
+    <h2 class="bold"><span translate>Semester</span></h2>
   </div>
   <div class="content">
     <h2>{{ selectedCourse.getSemester() }}</h2>
@@ -38,22 +38,22 @@
 
 <div class="course-teachers">
   <div class="title">
-    <h2 class="bold">Teachers</h2>
+    <h2 class="bold"><span translate>Teachers</span></h2>
   </div>
   <div class="content">
     <mat-expansion-panel>
       <!-- Panel header -->
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <h2>Expand the panel to see teacher</h2>
+          <h2><span translate>Expand the panel to see teacher</span></h2>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <!-- Teachers list -->
       <mat-list role="list">
         <!-- Column header -->
         <mat-list-item class="header" role="listitem">
-          <h2 class="teacher-column">Full name</h2>
-          <h2 class="teacher-column">Email address</h2>
+          <h2 class="teacher-column"><span translate>Full name</span></h2>
+          <h2 class="teacher-column"><span translate>Email address</span></h2>
         </mat-list-item>
         <!-- Teacher content -->
         <mat-list-item role="listitem">
@@ -67,22 +67,22 @@
 
 <div class="course-marks">
   <div class="title">
-    <h2 class="bold">Marks</h2>
+    <h2 class="bold"><span translate>Marks</span></h2>
   </div>
   <div class="content">
     <mat-expansion-panel>
       <!-- Panel header -->
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <h2>Expand the panel to see marks...</h2>
+          <h2><span translate>Expand the panel to see marks</span></h2>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <!-- Marks list -->
       <mat-list role="list">
         <!-- Column header -->
         <mat-list-item class="header" role="listitem">
-          <h2 class="mark-column">Mark</h2>
-          <h2 class="mark-column">Type</h2>
+          <h2 class="mark-column"><span translate>Mark</span></h2>
+          <h2 class="mark-column"><span translate>Type</span></h2>
         </mat-list-item>
         <!-- Teacher content -->
         <mat-list-item *ngFor="let mark of marks" role="listitem">
@@ -96,23 +96,23 @@
 
 <div class="course-poll">
   <div class="title">
-    <h2 class="bold">Polls</h2>
+    <h2 class="bold" translate>Polls</h2>
   </div>
   <div class="content">
     <mat-expansion-panel>
       <!-- Panel header -->
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <h2>Expand the panel to see polls...</h2>
+          <h2 translate>Expand the panel to see polls...</h2>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <!-- Polls list -->
       <mat-list role="list" *ngFor="let poll of polls">
         <!-- Column header -->
         <mat-list-item class="header" role="listitem">
-          <h2 class="poll-column">Title</h2>
-          <h2 class="poll-column" *ngIf="!poll.answer">Status</h2>
-          <h2 class="poll-column" *ngIf="poll.answer">Answer</h2>
+          <h2 class="poll-column" translate>Title</h2>
+          <h2 class="poll-column" *ngIf="!poll.answer" translate>Status</h2>
+          <h2 class="poll-column" *ngIf="poll.answer" translate>Answer</h2>
         </mat-list-item>
         <!-- Poll content -->
         <mat-list-item role="listitem">

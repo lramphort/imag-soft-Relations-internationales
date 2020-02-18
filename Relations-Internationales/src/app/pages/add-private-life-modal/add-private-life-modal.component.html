@@ -1,10 +1,12 @@
 <mat-form-field>
-  <input matInput [(ngModel)]="data.title" placeholder="title" value="">
+  <input matInput [(ngModel)]="data.title" placeholder="title" value="" required>
+  <mat-error *ngIf="!isFieldFiled(data.title)"><span translate>invalid field</span></mat-error>
 </mat-form-field>
 <mat-form-field>
-  <input matInput [(ngModel)]="data.description" placeholder="description" value="">
+  <input matInput [(ngModel)]="data.description" placeholder="description" value="" required>
+  <mat-error *ngIf="!isFieldFiled(data.description)"><span translate>invalid field</span></mat-error>
 </mat-form-field>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onNoClick()"><span translate>cancel</span></button>
+  <button mat-button (click)="save()" cdkFocusInitial [disabled]="!isFormValid()">Ok</button>
 </div>

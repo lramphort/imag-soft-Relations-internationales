@@ -101,6 +101,7 @@ export class StudentDetailsComponent implements OnInit {
     matDialogConfig.autoFocus = true;
     matDialogConfig.width = '60%';
     matDialogConfig.data = this.selectedStudent;
+    matDialogConfig.maxHeight = '90vh';
 
     switch (dialogType) {
       case 'course':

@@ -17,4 +17,20 @@ export class AddContactModalComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  isFieldFiled(el: any) {
+    return (el as string).length > 0;
+  }
+
+  save() {
+    if (this.isFormValid()) {
+      this.dialogRef.close(this.data);
+    }
+  }
+  isFormValid() {
+    return this.isFieldFiled(this.data.name) &&
+      this.isFieldFiled(this.data.description) &&
+      this.isFieldFiled(this.data.affiliation) &&
+      this.isFieldFiled(this.data.mail);
+  }
 }

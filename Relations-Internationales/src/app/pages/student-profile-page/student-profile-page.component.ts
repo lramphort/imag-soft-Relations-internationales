@@ -36,6 +36,7 @@ export class StudentProfilePageComponent implements OnInit {
   teacherName: string = '';
   codeUE: string = '';
   semester: string = '';
+  markExpanded: boolean = true;
 
   coursesValidated: Course[] = [];
   coursesHystory: Course[] = [];
@@ -77,8 +78,7 @@ export class StudentProfilePageComponent implements OnInit {
       this.coursesOfSelectedStudent.forEach(course => {
         if (course.getState() === 'rejected' || course.getState() === 'deleted') {
           this.coursesHystory.push(course);
-        }
-        else {
+        } else {
           this.coursesValidated.push(course);
         }
         this.markService.getMarksByStudent(course.getIdCourse(), this.selectedStudent.getIdPerson())
@@ -92,8 +92,7 @@ export class StudentProfilePageComponent implements OnInit {
       this.dailyTopicsOfSelectedStudent.forEach(dailyTopic => {
         if (dailyTopic.getType() === 'course') {
           this.dailyTopicCourse.push(dailyTopic);
-        }
-        else {
+        } else {
           this.dailyTopicLife.push(dailyTopic);
         }
       });
@@ -108,9 +107,11 @@ export class StudentProfilePageComponent implements OnInit {
 
   addMark() {
 
-    var newData = this.dataSourceMark.data;
+    const newData = this.dataSourceMark.data;
     const dialogRef = this.dialog.open(AddCourseModalComponent, {
       width: '250px',
+      disableClose: true,
+      maxHeight: '90vh',
       data: {
         name: this.name, ects: this.ects, description: this.description,
         teacherName: this.teacherName, codeUE: this.codeUE, semester: this.semester, mail: this.mail
@@ -142,15 +143,18 @@ export class StudentProfilePageComponent implements OnInit {
   openDetailCourse(course: Course) {
     const dialogCourse = this.dialog.open(CourseDetailModalComponent, {
       width: '90%',
+      maxHeight: '90vh',
       data: { course: course, idStudent: this.selectedStudent.getIdPerson() }
     });
   }
 
   addContact() {
 
-    var newData = this.dataSourceContact.data;
+    const newData = this.dataSourceContact.data;
     const dialogRef = this.dialog.open(AddContactModalComponent, {
       width: '250px',
+      disableClose: true,
+      maxHeight: '90vh',
       data: { name: this.name, description: this.description, affiliation: this.affiliation, mail: this.mail }
     });
 
@@ -178,6 +182,8 @@ export class StudentProfilePageComponent implements OnInit {
     const newData = this.dataSourcePL.data;
     const dialogRef = this.dialog.open(AddPrivateLifeModalComponent, {
       width: '250px',
+      disableClose: true,
+      maxHeight: '90vh',
       data: { title: this.title, description: this.description }
     });
 
@@ -202,6 +208,8 @@ export class StudentProfilePageComponent implements OnInit {
     const newData = this.dataSourcePL.data;
     const dialogRef = this.dialog.open(AddPrivateLifeModalComponent, {
       width: '250px',
+      disableClose: true,
+      maxHeight: '90vh',
       data: { title: this.title, description: this.description }
     });
 
@@ -259,3 +267,5 @@ export class StudentProfilePageComponent implements OnInit {
   }
 
 }
+
+// TODO : Remettre Daily topics life et daily topic course. Synchroniser avec admin. Permettre admin d'ajouter mark. Modification

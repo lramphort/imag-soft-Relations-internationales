@@ -14,7 +14,20 @@ export class AddPrivateLifeModalComponent implements OnInit {
   ngOnInit() {
   }
 
+  save() {
+    if (this.isFormValid()) {
+      this.dialogRef.close(this.data);
+    }
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  isFieldFiled(el: any) {
+    return (el as string).length > 0;
+  }
+  isFormValid() {
+    return this.isFieldFiled(this.data.title) && this.isFieldFiled(this.data.description);
   }
 }

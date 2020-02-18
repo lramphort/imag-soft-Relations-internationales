@@ -4,7 +4,7 @@
 
 <div class="course-description">
   <div class="title">
-    <h2>Description</h2>
+    <h2 translate>Description</h2>
   </div>
   <div class="content">
     {{data.course.getDescription()}}
@@ -13,7 +13,7 @@
 
 <div class="course-ects">
   <div class="title">
-    <h2>ECTS</h2>
+    <h2 translate>ECTS</h2>
   </div>
   <div class="content">
     {{data.course.getEcts()}}
@@ -26,15 +26,15 @@
       <!-- Panel header -->
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <h2>Expand the panel to see teacher</h2>
+          <h2 translate>Expand the panel to see teacher</h2>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <!-- Teachers list -->
       <mat-list role="list">
         <!-- Column header -->
         <mat-list-item class="header" role="listitem">
-          <h2 class="teacher-column">Full name</h2>
-          <h2 class="teacher-column">Email address</h2>
+          <h2 class="teacher-column" translate>Full name</h2>
+          <h2 class="teacher-column" translate>Email address</h2>
         </mat-list-item>
         <!-- Teacher content -->
         <mat-list-item role="listitem">
@@ -53,15 +53,15 @@
       <!-- Panel header -->
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <h2>Expand the panel to see marks...</h2>
+          <h2 translate>Expand the panel to see marks...</h2>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <!-- Marks list -->
       <mat-list role="list">
         <!-- Column header -->
         <mat-list-item class="header" role="listitem">
-          <h2 class="mark-column">Mark</h2>
-          <h2 class="mark-column">Type</h2>
+          <h2 class="mark-column" translate>Mark</h2>
+          <h2 class="mark-column" translate>Type</h2>
         </mat-list-item>
         <!-- Teacher content -->
         <mat-list-item *ngFor="let mark of marks" role="listitem">
