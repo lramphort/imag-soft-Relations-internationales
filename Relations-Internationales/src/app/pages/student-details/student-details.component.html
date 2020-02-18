@@ -165,7 +165,7 @@
           <mat-list-item *ngFor="let course of coursesOfSelectedStudentNotRejected; index as indexCourse"
             class="course-row" role="listitem">
             <h2 class="course-column--large">
-              <button (click)="setSelectedCourse(course)" mat-raised-button>{{ course.getName() }}</button>
+              <button (click)="setSelectedCourse(course)" mat-raised-button color="primary">{{ course.getName() }}</button>
             </h2>
             <h2 class="course-column--large">{{ course.getEcts() }}</h2>
             <h2 class="course-column--large">{{ course.getDescription() }}</h2>
