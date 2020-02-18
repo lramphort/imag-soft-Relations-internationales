@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  ip_address: '//127.0.0.1', // PUT THE IP ADDRESS OF YOUR BACKEND HERE
+  ip_address: 'https://im2ag-relations-internationales.univ-grenoble-alpes.fr', // PUT THE IP ADDRESS OF YOUR BACKEND HERE
   back: {
     login_student: '/student/login_student.php',
     login_administrator: '/administrator/login_administrator.php',
