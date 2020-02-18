@@ -5,6 +5,7 @@
     "Mark":"Mark",
     "ECTS":"ECTS",
     "ects":"ects",
+    "Number of ects credits":"Number of ects credits",
     "Description":"Description",
     "description":"description",
     "Code UE":"Code UE",
@@ -97,6 +98,7 @@
     "Expand the panel to see marks...": "Expand the panel to see marks...",
     "Type": "Type",
     "codeUE": "codeUE",
+    "Component code": "Component code",
     "Oops, you seems to be on the wrong way...": "Oops, you seems to be on the wrong way...",
     "Wrong logs...": "Wrong logs...",
     "Connection": "Connection",
@@ -110,5 +112,6 @@
     "Current": "Current",
     "Historic": "Historic",
     "Add a new student": "Add a new student",
-    "Possible answers": "Possible answers"
+    "Possible answers": "Possible answers",
+    "Component title": "Component title"
 }

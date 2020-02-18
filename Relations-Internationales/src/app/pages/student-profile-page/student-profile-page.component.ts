@@ -51,7 +51,7 @@ export class StudentProfilePageComponent implements OnInit {
 
   private marks: { idCourse: string; marks: Mark[] }[] = [];
 
-  displayedColumnsMark: string[] = ['name', 'ects', 'description', 'codeUE', 'semester', 'action'];
+  displayedColumnsMark: string[] = ['name', 'teacher', 'ects', 'description', 'codeUE', 'semester', 'action'];
   displayedColumnsNotValidated: string[] = ['name', 'ects', 'description', 'codeUE', 'semester'];
   displayedColumnsPL: string[] = ['name', 'dateDailyTopic', 'description', 'action'];
   displayedTopicsCourses: string[] = ['name', 'dateDailyTopic', 'description', 'action'];
@@ -59,7 +59,7 @@ export class StudentProfilePageComponent implements OnInit {
 
   dataSourceMark: MatTableDataSource<Course> = null;
   dataSourceNotValidated: MatTableDataSource<Course> = null;
-  dataSourcePL: MatTableDataSource<DailyTopic> = null;
+  dataSourceTL: MatTableDataSource<DailyTopic> = null;
   dataSourceTC: MatTableDataSource<DailyTopic> = null;
   dataSourceContact: MatTableDataSource<Contact> = null;
 
@@ -99,7 +99,7 @@ export class StudentProfilePageComponent implements OnInit {
 
       this.dataSourceMark = new MatTableDataSource(this.coursesValidated);
       this.dataSourceNotValidated = new MatTableDataSource(this.coursesHystory);
-      this.dataSourcePL = new MatTableDataSource(this.dailyTopicLife);
+      this.dataSourceTL = new MatTableDataSource(this.dailyTopicLife);
       this.dataSourceTC = new MatTableDataSource(this.dailyTopicCourse);
       this.dataSourceContact = new MatTableDataSource(this.contactsOfSelectedStudent);
     });
@@ -179,7 +179,7 @@ export class StudentProfilePageComponent implements OnInit {
   }
 
   addPrivateLife() {
-    const newData = this.dataSourcePL.data;
+    const newData = this.dataSourceTL.data;
     const dialogRef = this.dialog.open(AddPrivateLifeModalComponent, {
       width: '250px',
       disableClose: true,
@@ -199,13 +199,13 @@ export class StudentProfilePageComponent implements OnInit {
       });
 
       newData.push(newDailyTopic);
-      this.dataSourcePL.data = newData;
+      this.dataSourceTL.data = newData;
       this.dailyTopicService.addDailyTopic(newDailyTopic).subscribe();
     });
   }
 
   addTopicsCourses() {
-    const newData = this.dataSourcePL.data;
+    const newData = this.dataSourceTL.data;
     const dialogRef = this.dialog.open(AddPrivateLifeModalComponent, {
       width: '250px',
       disableClose: true,
@@ -225,7 +225,7 @@ export class StudentProfilePageComponent implements OnInit {
       });
 
       newData.push(newDailyTopic);
-      this.dataSourcePL.data = newData;
+      this.dataSourceTL.data = newData;
       this.dailyTopicService.addDailyTopic(newDailyTopic).subscribe();
     });
   }
@@ -243,17 +243,17 @@ export class StudentProfilePageComponent implements OnInit {
   }
 
   delTopicLife(topic: DailyTopic) {
-    const newData = this.dataSourcePL.data;
+    const newData = this.dataSourceTL.data;
     newData.splice(newData.indexOf(topic), 1);
-    this.dataSourcePL.data = newData;
+    this.dataSourceTL.data = newData;
 
     this.dailyTopicService.deleteDailyTopic(topic.getIdDailyTopic()).subscribe();
   }
 
   delTopicCourse(topic: DailyTopic) {
-    const newData = this.dataSourcePL.data;
+    const newData = this.dataSourceTL.data;
     newData.splice(newData.indexOf(topic), 1);
-    this.dataSourcePL.data = newData;
+    this.dataSourceTL.data = newData;
 
     this.dailyTopicService.deleteDailyTopic(topic.getIdDailyTopic()).subscribe();
   }

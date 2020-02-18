@@ -5,9 +5,11 @@
     "Mark":"Note",
     "ECTS":"ECTS",
     "ects":"ects",
+    "Number of ects credits":"Nombre d'ects",
     "Description":"Description",
     "description":"description",
     "Code UE":"Code UE",
+    "Component code": "Code UE",
     "Logged as": "Connecté en tant que",
     "Semester": "Semestre",
     "semester": "semester",
@@ -110,5 +112,6 @@
     "Current": "En cour",
     "Historic": "Historique",
     "Add a new student": "Ajouter un étudiant",
-    "Possible answers": "Réponses possibles"
+    "Possible answers": "Réponses possibles",
+    "Component title": "Name"
 }

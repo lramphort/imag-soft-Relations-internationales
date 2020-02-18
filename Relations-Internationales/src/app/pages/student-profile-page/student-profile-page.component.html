@@ -17,9 +17,14 @@
             <table mat-table [dataSource]="dataSourceMark" class="mat-elevation-z8">
                 <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef><div translate>Name</div></th>
-                  <td mat-cell *matCellDef="let element" (click)="openDetailCourse(element)">
+                  <td mat-cell *matCellDef="let element" (click)="openDetailCourse(element)" class="full-width-field">
                     <button mat-raised-button>{{element.getName()}} <mat-icon>assignment_turned_in</mat-icon></button>
                   </td>
+                </ng-container>
+
+                <ng-container matColumnDef="teacher">
+                  <th mat-header-cell *matHeaderCellDef><div translate>Teacher</div></th>
+                  <td mat-cell *matCellDef="let element">{{element.getTeacherFullName()}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="ects">
@@ -109,7 +114,7 @@
           <div translate>Topics life</div>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <table mat-table [dataSource]="dataSourcePL" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSourceTL" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef><div translate>Titre</div></th>
           <td mat-cell *matCellDef="let element"> {{element.getName()}} </td>

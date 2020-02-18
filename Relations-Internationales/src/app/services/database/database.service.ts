@@ -6,21 +6,16 @@ import { Injectable } from '@angular/core';
 export class DatabaseService {
 
   constructor() {
-    // TODO connect to mySQL database
   }
 
   selectAll(table: string) {
     // Build request
     const request = 'SELECT * FROM localDataBase.' + table + ';';
-
-    // TODO MySQL treatment
   }
 
   selectWhere(table: string, where: string) {
     // Build request
     const request = 'SELECT * FROM localDataBase.' + table + ' WHERE ' + where + ';';
-
-    // TODO MySQL treatment
   }
 
   insertInto(table: string, values: string[]) {
@@ -35,15 +30,11 @@ export class DatabaseService {
     }
     // Close request
     request += ');';
-
-    // TODO MySQL treatment
   }
 
   delete(table: string, where: string) {
     // Build request
     const request = 'SELECT * FROM localDataBase.' + table + ' WHERE ' + where + ';';
-
-    // TODO MySQL treatment
   }
 
   update(table: string, set: string[], where: string) {
@@ -62,7 +53,5 @@ export class DatabaseService {
     }
     // Close reauest
     request += ';';
-
-    // TODO MySQL treatment
   }
 }
