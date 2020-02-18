@@ -49,7 +49,6 @@ export class CourseDetailsComponent implements OnInit {
   displayAddPollDialog(): void {
     let dialogRef = null;
     const matDialogConfig = new MatDialogConfig();
-    matDialogConfig.autoFocus = true;
     matDialogConfig.width = '60%';
     matDialogConfig.data = this.selectedCourse;
     matDialogConfig.maxHeight = '90vh';
