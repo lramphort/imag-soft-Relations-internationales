@@ -13,7 +13,7 @@
         </div>
         <!-- Field Answers -->
         <div class="possible-answer-field">
-          <h3 [class.invalid-field]="!isFormValid && !arePossibleAnswersValid">Possible answers</h3>
+          <h3 [class.invalid-field]="!isFormValid && !arePossibleAnswersValid" translate>Possible answers</h3>
           <mat-form-field>
             <input matInput type="text" placeholder="{{'Enter a possible answer'|translate}}" name="pollPossibleAnswers" [(ngModel)]="possibleAnswer">
           </mat-form-field>
