@@ -158,7 +158,6 @@ export class StudentDetailsComponent implements OnInit {
   displaySendEmailDialog(): void {
     let dialogRef = null;
     const matDialogConfig = new MatDialogConfig();
-    matDialogConfig.autoFocus = true;
     matDialogConfig.width = '60%';
     matDialogConfig.data = this.selectedStudent;
 
