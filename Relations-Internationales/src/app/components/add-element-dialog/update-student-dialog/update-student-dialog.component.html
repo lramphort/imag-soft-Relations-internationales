@@ -1,0 +1,65 @@
+<div class="dialog-content">
+  <h2 class="dialog-title" translate>Update student</h2>
+
+  <form class="add-student-form">
+    <div class="form-fields">
+      <div class="column">
+        <!-- Field First Name -->
+        <div class="first-name-field">
+          <h3 [class.invalid-field]="!isFormValid && !isFirstNameValid" translate>First Name</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the first name' | translate}}" [(ngModel)]="firstName"
+              name="studentFirstName">
+          </mat-form-field>
+        </div>
+        <!-- Field Email Address -->
+        <div class="email-address-field">
+          <h3 [class.invalid-field]="!isFormValid && !isEmailAddressValid" translate>Email Address</h3>
+          <mat-form-field>
+            <input matInput type="email" placeholder="{{'Enter the email address' | translate}}" [(ngModel)]="emailAddress"
+              name="studentEmailAddress">
+          </mat-form-field>
+        </div>
+        <!-- Field University -->
+        <div class="university-field">
+          <h3 [class.invalid-field]="!isFormValid && !isUniversityValid" translate>University</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the university'|translate}}" [(ngModel)]="university"
+              name="studentUniversity">
+          </mat-form-field>
+        </div>
+        <!-- Field Is Entrant -->
+        <div class="is-entrant-field">
+          <mat-checkbox [(ngModel)]="isEntrant" name="studentIsEntrant"><span *ngIf="isEntrant" translate>Is entrant</span><span *ngIf="!isEntrant" translate>Is outgoing</span></mat-checkbox>
+        </div>
+      </div>
+      <div class="column">
+        <!-- Field Last Name -->
+        <div class="last-name-field">
+          <h3 [class.invalid-field]="!isFormValid && !isLastNameValid" translate>Last Name</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the last name'| translate}}" [(ngModel)]="lastName" name="studentLastName">
+          </mat-form-field>
+        </div>
+        <!-- Field Phone Number -->
+        <div class="phone-number-field">
+          <h3 [class.invalid-field]="!isFormValid && !isPhoneNumberValid" translate>Phone Number</h3>
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Enter the phone number'| translate}}" [(ngModel)]="phoneNumber"
+              name="studentPhoneNumber">
+          </mat-form-field>
+        </div>
+        <!-- Field Birth Date -->
+        <div class="birth-date-field">
+          <h3 [class.invalid-field]="!isFormValid && !isBirthDateValid" translate>Birth date</h3>
+          <mat-form-field>
+            <input matInput type="date" placeholder="{{ 'Enter the birth date' | translate }}" [(ngModel)]="birthDate"
+              name="studentBirthDate">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <!-- Button Create -->
+    <button mat-raised-button color="primary" class="create-button" (click)="createStudent()"><span translate>Update</span></button>
+  </form>
+</div>

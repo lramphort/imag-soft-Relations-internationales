@@ -121,11 +121,12 @@
           <h2 class="poll-column" *ngIf="poll.answer">{{ poll.answer }}</h2>
         </mat-list-item>
       </mat-list>
+      <button mat-stroked-button color="primary" class="add-element-button" (click)="displayAddPollDialog()">
+        <span translate>Add new poll</span>
+      </button>
     </mat-expansion-panel>
   </div>
 </div>
 
 <!-- Add Topic button -->
-<button mat-stroked-button color="primary" class="add-element-button" (click)="displayAddPollDialog()">
-  <span translate>Add new poll</span>
-</button>
+

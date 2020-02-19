@@ -12,6 +12,7 @@
           <h2>{{ selectedStudent.getFirstName() }} {{ selectedStudent.getLastName() }}</h2>
           <h3>{{ selectedStudent.getEmailAddress() }}</h3>
           <h3>{{ selectedStudent.getPhoneNumber() }}</h3>
+          <h3><button *ngIf="!selectedCourse" mat-stroked-button (click)="updateStudentModal()"><span translate>Modify student</span></button></h3>
         </div>
         <!-- Last connection -->
         <div class="student-connection">
@@ -157,6 +158,7 @@
           <!-- Column header -->
           <mat-list-item class="header" role="listitem">
             <h2 class="course-column--large" translate>Name</h2>
+            <h2 class="course-column--large" translate>Teacher</h2>
             <h2 class="course-column--large" translate>ECTS</h2>
             <h2 class="course-column--large" translate>Description</h2>
             <h2 class="course-column--large" translate>Last mark</h2>
@@ -167,6 +169,7 @@
             <h2 class="course-column--large">
               <button (click)="setSelectedCourse(course)" mat-raised-button color="primary">{{ course.getName() }}</button>
             </h2>
+            <h2 class="course-column--large">{{ course.getTeacherFullName() }}</h2>
             <h2 class="course-column--large">{{ course.getEcts() }}</h2>
             <h2 class="course-column--large">{{ course.getDescription() }}</h2>
             <h2 class="course-column--large" *ngIf="marks[indexCourse] && marks[indexCourse].marks.length > 0">

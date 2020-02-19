@@ -20,6 +20,8 @@ import { ContactService } from 'src/app/services/back/contact.service';
 import { StudentService } from 'src/app/services/back/student.service';
 import { AdministratorService } from 'src/app/services/back/administrator.service';
 import * as html2canvas from 'html2canvas';
+import {AddStudentDialogComponent} from '../../components/add-element-dialog/add-student-dialog/add-student-dialog.component';
+import {UpdateStudentDialogComponent} from '../../components/add-element-dialog/update-student-dialog/update-student-dialog.component';
 
 @Component({
   selector: 'app-student-details',
@@ -164,6 +166,28 @@ export class StudentDetailsComponent implements OnInit {
     dialogRef = this.dialog.open(SendEmailDialogComponent, matDialogConfig);
   }
 
+  updateStudentModal() {
+    let dialogRef = null;
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.autoFocus = true;
+    matDialogConfig.width = '60%';
+    matDialogConfig.maxHeight = '90vh';
+    matDialogConfig.data = this.selectedStudent;
+
+    dialogRef = this.dialog.open(UpdateStudentDialogComponent, matDialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const idPerson = this.selectedStudent.getIdPerson();
+        result.setIdPerson(idPerson);
+        this.studentService.updateStudent(result).subscribe(() => {
+            this.selectedStudent = result;
+          },
+          err => {
+            console.log(err);
+          });
+      }
+    });
+  }
   setSelectedCourse(selectedCourse: Course): void {
     this.selectedCourse = selectedCourse;
   }

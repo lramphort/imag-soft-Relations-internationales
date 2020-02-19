@@ -61,6 +61,7 @@ import { DailyTopicsResolver } from './resolvers/dailyTopics.resolver';
 import { LoginResolver } from './resolvers/login.resolver';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { AddMarkModalComponent } from './pages/add-mark-modal/add-mark-modal.component';
+import {UpdateStudentDialogComponent} from './components/add-element-dialog/update-student-dialog/update-student-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -135,6 +136,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         AddDailyTopicDialogComponent,
         HeaderComponent,
         AddStudentDialogComponent,
+        UpdateStudentDialogComponent,
         CourseDetailsComponent,
         AddPollDialogComponent,
         SendEmailDialogComponent,
@@ -198,6 +200,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         AddContactDialogComponent,
         AddDailyTopicDialogComponent,
         AddStudentDialogComponent,
+        UpdateStudentDialogComponent,
         AddPollDialogComponent,
         SendEmailDialogComponent,
         AddPrivateLifeModalComponent,
