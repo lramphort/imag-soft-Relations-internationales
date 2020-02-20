@@ -64,20 +64,6 @@ export class AddCourseDialogComponent implements OnInit {
       this.isFormValid = false;
     }
 
-    if (this.teacherFullName && this.teacherFullName.length > 0) {
-      this.isTeacherFullNameValid = true;
-    } else {
-      this.isTeacherFullNameValid = false;
-      this.isFormValid = false;
-    }
-
-    if (this.teacherEmail && this.teacherEmail.length > 0) {
-      this.isTeacherEmailValid = true;
-    } else {
-      this.isTeacherEmailValid = false;
-      this.isFormValid = false;
-    }
-
     return this.isFormValid;
   }
 

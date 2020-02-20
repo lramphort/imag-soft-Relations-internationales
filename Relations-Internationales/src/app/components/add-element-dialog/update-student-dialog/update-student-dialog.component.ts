@@ -13,7 +13,7 @@ export class UpdateStudentDialogComponent implements OnInit {
   firstName: string;
   emailAddress: string;
   university: string;
-  isEntrant: number;
+  isEntrant: string;
   lastName: string;
   phoneNumber: string;
   birthDate: Date;
@@ -33,7 +33,7 @@ export class UpdateStudentDialogComponent implements OnInit {
     this.firstName = data.getFirstName();
     this.emailAddress = data.getEmailAddress();
     this.university = data.getUniversity();
-    this.isEntrant = +data.getIsEntrant();
+    this.isEntrant = data.getIsEntrant();
     this.lastName = data.getLastName();
     this.phoneNumber = data.getPhoneNumber();
     this.birthDate = data.getBirthDate();
@@ -54,7 +54,7 @@ export class UpdateStudentDialogComponent implements OnInit {
         lastConnection: null,
         phoneNumber: this.phoneNumber,
         university: this.university,
-        isEntrant: this.isEntrant ? 'true' : 'false',
+        isEntrant: this.isEntrant === 'true' ? 'true' : 'false',
         isArchived: 'false',
         isLearningAgreementValid: 'false',
         login: this.emailAddress,

@@ -105,7 +105,7 @@ export class StudentProfilePageComponent implements OnInit {
     });
   }
 
-  addMark() {
+  addCourse() {
 
     const newData = this.dataSourceMark.data;
     const dialogRef = this.dialog.open(AddCourseModalComponent, {
@@ -123,14 +123,14 @@ export class StudentProfilePageComponent implements OnInit {
 
       const newCourse = new Course({
         idCourse: null,
-        name: result.name,
-        description: result.description,
-        ects: result.ects,
-        teacherFullName: result.teacherName,
-        teacherEmail: result.mail,
+        name: result.name ? result.name : ' ',
+        description: result.description ? result.description : ' ',
+        ects: result.ects ? result.ects : 0,
+        teacherFullName: result.teacherName ? result.teacherName : ' ',
+        teacherEmail: result.mail ? result.mail : ' ',
         idPerson: this.selectedStudent.getIdPerson(),
-        codeUE: result.codeUE,
-        semester: result.semester
+        codeUE: result.codeUE ? result.codeUE : ' ',
+        semester: result.semester ? result.semester : 0
       });
       newData.push(newCourse);
       this.dataSourceMark.data = newData;

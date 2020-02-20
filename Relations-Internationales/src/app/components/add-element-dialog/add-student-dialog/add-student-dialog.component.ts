@@ -13,7 +13,7 @@ export class AddStudentDialogComponent implements OnInit {
   firstName: string;
   emailAddress: string;
   university: string;
-  isEntrant: number;
+  isEntrant = 'true';
   lastName: string;
   phoneNumber: string;
   birthDate: Date;
@@ -44,7 +44,7 @@ export class AddStudentDialogComponent implements OnInit {
         lastConnection: null,
         phoneNumber: this.phoneNumber,
         university: this.university,
-        isEntrant: this.isEntrant ? 'true' : 'false',
+        isEntrant: this.isEntrant === 'true' ? 'true' : 'false',
         isArchived: 'false',
         isLearningAgreementValid: 'false',
         login: this.emailAddress,

@@ -63,12 +63,14 @@ export class StudentDetailsComponent implements OnInit {
     this.dailyTopicsOfSelectedStudent = [];
 
     this.logs = { idPerson: localStorage.getItem('idPerson'), type: localStorage.getItem('type') };
-
+// TODO modifier un cour
     this.activatedRoute.data.subscribe(data => {
       this.selectedStudent = data.studentResolverResult[0];
       this.coursesOfSelectedStudent = data.coursesResolverResult['courses'];
       this.contactsOfSelectedStudent = data.contactsResolverResult['contacts'];
       this.dailyTopicsOfSelectedStudent = data.dailyTopicsResolverResult['dailyTopics'];
+      console.log(this.dailyTopicsOfSelectedStudent);
+      console.log(data);
 
       this.coursesOfSelectedStudent.forEach(course => {
         this.markService.getMarksByStudent(course.getIdCourse(), this.selectedStudent.getIdPerson())
@@ -110,7 +112,7 @@ export class StudentDetailsComponent implements OnInit {
         dialogRef = this.dialog.open(AddCourseDialogComponent, matDialogConfig);
         dialogRef.afterClosed().subscribe(result => {
           if (result) {
-            this.courseService.addCourse(result).subscribe(() => {
+            this.courseService.addCourse(result).subscribe((course) => {
               this.setCourses();
 
               if (this.selectedStudent.getIsLearningAgreementValid() === 'true') {

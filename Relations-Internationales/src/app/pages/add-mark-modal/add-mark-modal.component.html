@@ -7,6 +7,6 @@
   <mat-error *ngIf="!isFieldFiled(data.typeMark)"><span translate>invalid field</span></mat-error>
 </mat-form-field>
 <div mat-dialog-actions>
-  <button mat-button><span translate>cancel</span></button>
+  <button mat-button (click)="dialog.close()"><span translate>cancel</span></button>
   <button mat-button (click)="save()" cdkFocusInitial [disabled]="!isFormValid()">Ok</button>
 </div>

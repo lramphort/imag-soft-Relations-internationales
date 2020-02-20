@@ -1,5 +1,5 @@
 <mat-form-field>
-  <input matInput [(ngModel)]="data.title" placeholder="title" value="" required>
+  <input matInput [(ngModel)]="data.title" placeholder="{{'Title'|translate}}" value="" required>
   <mat-error *ngIf="!isFieldFiled(data.title)"><span translate>invalid field</span></mat-error>
 </mat-form-field>
 <mat-form-field>

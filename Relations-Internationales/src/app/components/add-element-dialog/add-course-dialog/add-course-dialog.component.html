@@ -6,9 +6,9 @@
       <div class="column">
         <!-- Field Name -->
         <div class="name-field">
-          <h3 [class.invalid-field]="!isFormValid && !isNameValid"><span translate>Name</span></h3>
+          <h3 [class.invalid-field]="!isFormValid && !isNameValid"><span translate>Component title</span></h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="{{'Enter the name' | translate}}" [(ngModel)]="name" name="courseName" required>
+            <input matInput type="text" placeholder="{{'Enter the component title' | translate}}" [(ngModel)]="name" name="courseName" required>
           </mat-form-field>
         </div>
         <!-- Field ECTS -->
@@ -39,22 +39,22 @@
         </div>
         <!-- Field TeacherFullName -->
         <div class="teacher-full-name-field">
-          <h3 [class.invalid-field]="!isFormValid && !isTeacherFullNameValid"><span translate>Teacher full name</span></h3>
+          <h3><span translate>Teacher full name</span></h3>
           <mat-form-field>
             <input matInput type="text" placeholder="{{'Enter the teacher\'s full name'| translate}}" [(ngModel)]="teacherFullName"
-              name="courseTeacherFullName" required>
+              name="courseTeacherFullName">
           </mat-form-field>
         </div>
         <!-- Field Semester -->
         <div class="semester-field">
           <h3>Semester</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="{{'Enter the semester'| translate}}" [(ngModel)]="semester" name="courseSemester" required>
+            <input matInput type="text" placeholder="{{'Enter the semester'| translate}}" [(ngModel)]="semester" name="courseSemester">
           </mat-form-field>
         </div>
       </div>
     </div>
     <!-- Button Create -->
-    <button mat-raised-button color="primary" class="create-button" (click)="createCourse()">Create</button>
+    <button mat-raised-button color="primary" class="create-button" (click)="createCourse()"><span translate>Create</span></button>
   </form>
 </div>

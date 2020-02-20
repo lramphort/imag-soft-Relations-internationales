@@ -30,7 +30,10 @@
         </div>
         <!-- Field Is Entrant -->
         <div class="is-entrant-field">
-          <mat-checkbox [(ngModel)]="isEntrant" name="studentIsEntrant"><span *ngIf="isEntrant" translate>Is entrant</span><span *ngIf="!isEntrant" translate>Is outgoing</span></mat-checkbox>
+          <mat-radio-group [(ngModel)]="isEntrant" aria-label="Select an option" name="something">
+            <mat-radio-button value="true" style="margin-right: 10px" [checked]="isEntrant === 'true'"><span translate>Is entrant</span></mat-radio-button>
+            <mat-radio-button value="false" [checked]="isEntrant !== 'true'"><span translate>Is outgoing</span></mat-radio-button>
+          </mat-radio-group>
         </div>
       </div>
       <div class="column">

@@ -47,7 +47,7 @@
     "Enter the semester": "Enter the semester",
     "Enter the topic description": "Enter the topic description",
     "Enter the object": "Enter the object",
-    "Enter a body": "Enter a body",
+    "Enter an Email body": "Enter an Email body",
     "Is entrant": "Is entrant",
     "Is outgoing": "Is outgoing",
     "The default login is stucked firstname and lastname": "The default login is stucked firstname and lastname",
@@ -83,8 +83,8 @@
     "Topics Courses": "Topics Courses",
     "Unvalid learning agreement": "Unvalid learning agreement",
     "Send an email": "Send an email",
-    "Object": "Object",
-    "Body": "Body",
+    "Subject": "Subject",
+    "Email body": "Email body",
     "Enter the ects": "Enter the ects",
     "Teacher full name": "Teacher full name",
     "Expand the panel to see teacher": "Expand the panel to see teacher",
@@ -116,5 +116,6 @@
     "Component title": "Component title",
     "Modify student": "Modify student",
     "Update student": "Update student",
-    "Update": "Update"
+    "Update": "Update",
+    "Enter the component title": "Enter the component title"
 }

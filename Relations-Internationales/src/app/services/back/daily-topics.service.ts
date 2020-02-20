@@ -51,7 +51,7 @@ export class DailyTopicsService {
       })
     );
   }
-
+// TODO daily topic synchro avec l'admin !!
   addDailyTopic(dailyTopic: object): Observable<any> {
     // tslint:disable-next-line:max-line-length
     return this.http.get<object>(`${environment.ip_address}${environment.back.add_dailyTopic}?idPerson=${dailyTopic['idPerson']}&dateDailyTopic=${dailyTopic['dateDailyTopic']}&description=${dailyTopic['description']}&name=${dailyTopic['name']}`);

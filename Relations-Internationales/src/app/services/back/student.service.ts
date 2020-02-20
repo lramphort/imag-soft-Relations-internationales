@@ -22,7 +22,7 @@ export class StudentService {
       })
     );
   }
-
+// TODO QUand on se connecte en tant qu'étudiant, on peut tout voir les autres étudiants à cause de cette requête
   getStudents(): Observable<{
     students: Student[],
     nbRows: number

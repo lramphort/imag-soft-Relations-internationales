@@ -30,9 +30,6 @@ export class AddCourseModalComponent implements OnInit {
   isFormValid() {
     return this.isFieldFiled(this.data.name) &&
       this.isFieldFiled(this.data.ects) &&
-      this.isFieldFiled(this.data.description) &&
-      this.isFieldFiled(this.data.codeUE) &&
-      this.isFieldFiled(this.data.semester) &&
-      this.isFieldFiled(this.data.teacherName);
+      this.isFieldFiled(this.data.semester);
   }
 }
