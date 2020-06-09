@@ -30,6 +30,9 @@ export class CourseDetailsComponent implements OnInit {
   marks: Mark[] = [];
   polls: Poll[] = [];
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.markService.getMarksByStudent(this.selectedCourse.getIdCourse(), this.selectedStudent.getIdPerson())
       .subscribe(result => {
@@ -42,10 +45,16 @@ export class CourseDetailsComponent implements OnInit {
       });
   }
 
+  /**
+   * Retourne sur les détails de l'étudiant
+   */
   goToStudent(): void {
     this.backToStudent.emit();
   }
 
+  /**
+   * Affiche le modal pour ajouter un questionnaire
+   */
   displayAddPollDialog(): void {
     let dialogRef = null;
     const matDialogConfig = new MatDialogConfig();

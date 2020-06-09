@@ -1,14 +1,14 @@
 import { Student } from './../../models/student';
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatTableDataSource } from '@angular/material';
-import { AddCourseModalComponent } from '../add-course-modal/add-course-modal.component';
+import { AddCourseModalComponent } from '../../components/add-element-dialog/add-course-modal/add-course-modal.component';
 import { Course } from 'src/app/models/course';
 import { DatePipe } from '@angular/common';
-import { CourseDetailModalComponent } from '../course-detail-modal/course-detail-modal.component';
+import { CourseDetailModalComponent } from '../../components/add-element-dialog/course-detail-modal/course-detail-modal.component';
 import { Contact } from 'src/app/models/contact';
-import { AddContactModalComponent } from '../add-contact-modal/add-contact-modal.component';
+import { AddContactModalComponent } from '../../components/add-element-dialog/add-contact-modal/add-contact-modal.component';
 import { DailyTopic } from 'src/app/models/daily-topic';
-import { AddPrivateLifeModalComponent } from '../add-private-life-modal/add-private-life-modal.component';
+import { AddPrivateLifeModalComponent } from '../../components/add-element-dialog/add-private-life-modal/add-private-life-modal.component';
 import { MarkService } from 'src/app/services/back/mark.service';
 import { ActivatedRoute } from '@angular/router';
 import { Mark } from 'src/app/models/mark';
@@ -71,6 +71,9 @@ export class StudentProfilePageComponent implements OnInit {
   }
 
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
 
 

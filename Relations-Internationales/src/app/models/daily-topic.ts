@@ -1,5 +1,6 @@
-import { Student } from './student';
-
+/**
+ * Représente un problème journalier
+ */
 export class DailyTopic {
 
     private idDailyTopic: string;
@@ -8,16 +9,6 @@ export class DailyTopic {
     private name: string;
     private idPerson: string;
     private type: string;
-
-    // constructor(idDailyTopic: string, dateDailyTopic: Date, description: string, name: string, student: Student) {
-    //     this.idDailyTopic = idDailyTopic;
-    //     this.dateDailyTopic = dateDailyTopic;
-    //     this.description = description;
-    //     this.name = name;
-    //     this.student = student;
-
-    //     this.student.getDailyTopics().push(this);
-    // }
 
     constructor(data: object) {
         const dailyTopic = data || {};

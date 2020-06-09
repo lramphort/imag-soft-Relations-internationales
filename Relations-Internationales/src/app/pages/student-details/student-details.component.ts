@@ -56,6 +56,9 @@ export class StudentDetailsComponent implements OnInit {
   logs: { idPerson: string; type: string };
   isLAPending = false;
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.coursesOfSelectedStudent = [];
     this.coursesOfSelectedStudentNotRejected = [];
@@ -99,6 +102,10 @@ export class StudentDetailsComponent implements OnInit {
     });
   }
 
+  /**
+   * Ouvre le modal adéquat en fonction de dialogType
+   * @param dialogType
+   */
   displayAddElementDialog(dialogType: string): void {
     let dialogRef = null;
     const matDialogConfig = new MatDialogConfig();
@@ -190,6 +197,7 @@ export class StudentDetailsComponent implements OnInit {
       }
     });
   }
+
   setSelectedCourse(selectedCourse: Course): void {
     this.selectedCourse = selectedCourse;
   }

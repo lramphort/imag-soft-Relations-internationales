@@ -10,6 +10,9 @@ import { DatePipe } from '@angular/common';
 })
 export class AddStudentDialogComponent implements OnInit {
 
+   /**
+   * Avec les ngModel dans le html, les champs suivants sont mis à jour automatiquement
+   */
   firstName: string;
   emailAddress: string;
   university: string;
@@ -27,19 +30,36 @@ export class AddStudentDialogComponent implements OnInit {
   isPhoneNumberValid: boolean;
   isBirthDateValid: boolean;
 
+  /**
+   *
+   * @param dialogRef: Le composant gérant le modal
+   * @param datePipe: Permet d'ajouter un pipe pour traiter les dates
+   */
   constructor(private readonly dialogRef: MatDialogRef<AddStudentDialogComponent>,
     private readonly datePipe: DatePipe) { }
 
+     /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.isFormValid = true;
   }
 
   createStudent(): void {
     if (this.checkForm()) {
+      /**
+       * Student est récupéré dans le composant qui a appelé ce composant. Par exemple AdministratorSideComponent
+       */
       this.dialogRef.close(new Student({
         emailAddress: this.emailAddress,
         firstName: this.firstName,
         lastName: this.lastName,
+        /**
+         * Transforme le format de la date
+         */
         birthDate: this.datePipe.transform(this.birthDate, 'yyyy-MM-dd'),
         lastConnection: null,
         phoneNumber: this.phoneNumber,
@@ -53,6 +73,9 @@ export class AddStudentDialogComponent implements OnInit {
     }
   }
 
+  /**
+   * Vérifie que les informations du formulaire sont correctement renseignées
+   */
   checkForm(): boolean {
     this.isFormValid = true;
 

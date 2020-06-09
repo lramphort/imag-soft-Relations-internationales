@@ -10,6 +10,9 @@ import { DailyTopic } from 'src/app/models/daily-topic';
 })
 export class AddDailyTopicDialogComponent implements OnInit {
 
+  /**
+   * Avec les ngModel dans le html, les champs suivants sont mis à jour automatiquement
+   */
   description: string;
   name: string;
 
@@ -17,9 +20,17 @@ export class AddDailyTopicDialogComponent implements OnInit {
   isNameValid: boolean;
   isDescriptionValid: boolean;
 
+  /**
+   *
+   * @param dialogRef: Le composant gérant la modal
+   * @param injectedStudent: L'étudiant envoyé à la modal
+   */
   constructor(private dialogRef: MatDialogRef<AddDailyTopicDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public injectedStudent: Student) { }
 
+    /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.isFormValid = true;
   }
@@ -33,10 +44,16 @@ export class AddDailyTopicDialogComponent implements OnInit {
         idPerson: this.injectedStudent.getIdPerson()
       });
 
+      /**
+       * newDailyTopic est récupéré dans le composant qui a appelé ce composant. Par exemple StudentDetailsComponent
+       */
       this.dialogRef.close(newDailyTopic);
     }
   }
 
+  /**
+   * Vérifie que les informations du formulaire sont correctement renseignées
+   */
   checkForm(): boolean {
     this.isFormValid = true;
 

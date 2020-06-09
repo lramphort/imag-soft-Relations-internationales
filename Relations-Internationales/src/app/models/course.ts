@@ -1,4 +1,6 @@
-
+/**
+ * Représente un cour
+ */
 export class Course {
 
     private idCourse: string;

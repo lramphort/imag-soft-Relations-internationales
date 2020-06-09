@@ -10,6 +10,9 @@ import { Contact } from 'src/app/models/contact';
 })
 export class AddContactDialogComponent implements OnInit {
 
+  /**
+   * Avec les ngModel dans le html, les champs suivants sont mis à jour automatiquement
+   */
   firstName: string;
   lastName: string;
   emailAddress: string;
@@ -24,13 +27,24 @@ export class AddContactDialogComponent implements OnInit {
   isAffiliationValid: boolean;
   isFormValid: boolean;
 
+  /**
+   *
+   * @param dialogRef: Le composant gérant la modal
+   * @param injectedStudent: L'étudiant envoyé à la modal
+   */
   constructor(private dialogRef: MatDialogRef<AddContactDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public injectedStudent: Student) { }
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.isFormValid = true;
   }
 
+  /**
+   * Créé un contact.
+   */
   createContact(): void {
     if (this.checkForm()) {
       const newContact = new Contact({
@@ -47,6 +61,9 @@ export class AddContactDialogComponent implements OnInit {
     }
   }
 
+  /**
+   * Vérifie que les informations du formulaire sont correctement renseignées
+   */
   checkForm(): boolean {
     this.isFormValid = true;
 

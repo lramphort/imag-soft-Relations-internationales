@@ -1,5 +1,6 @@
-import { Student } from './student';
-
+/**
+ * Représente un contact
+ */
 export class Contact {
 
     private idContact: string;
@@ -10,20 +11,6 @@ export class Contact {
     private phoneNumber: string;
     private affiliation: string;
     private description: string;
-
-    // constructor(idContact: string, student: Student, emailAddress: string, firstName: string, lastName: string,
-    //     phoneNumber: string, affiliation: string, description: string) {
-    //     this.idContact = idContact;
-    //     this.student = student;
-    //     this.emailAddress = emailAddress;
-    //     this.firstName = firstName;
-    //     this.lastName = lastName;
-    //     this.phoneNumber = phoneNumber;
-    //     this.affiliation = affiliation;
-    //     this.description = description;
-
-    //     this.student.getContacts().push(this);
-    // }
 
     constructor(data: object) {
         const contact = data || {};

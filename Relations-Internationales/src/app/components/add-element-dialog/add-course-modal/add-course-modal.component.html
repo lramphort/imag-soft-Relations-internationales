@@ -17,12 +17,12 @@
   <mat-error *ngIf="!isFieldFiled(data.semester)"><span translate>invalid field</span></mat-error>
 </mat-form-field>
 <mat-form-field>
-  <input matInput [(ngModel)]="data.teacherName" placeholder="{{'Teacher'|translate}}" value="">
+  <input matInput [(ngModel)]="data.teacherName" placeholder="{{'Teacher full name'|translate}}" value="">
 </mat-form-field>
 <mat-form-field>
   <input matInput [(ngModel)]="data.mail" placeholder="{{'Mail'|translate}}" value="">
 </mat-form-field>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()"><span translate>cancel</span></button>
+  <button mat-button (click)="onQuit()"><span translate>cancel</span></button>
   <button mat-button (click)="save()" cdkFocusInitial [disabled]="!isFormValid()">Ok</button>
 </div>

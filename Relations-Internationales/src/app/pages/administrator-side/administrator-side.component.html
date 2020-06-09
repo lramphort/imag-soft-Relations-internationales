@@ -58,6 +58,18 @@
       </td>
     </ng-container>
 
+    <!-- SelectRow Column -->
+    <ng-container matColumnDef="UpdateStudent">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let student">
+        <h3  *ngIf="!areDisplayArchived"><button mat-stroked-button (click)="updateStudentModal(student)"><span translate>Modify student</span></button></h3>
+      </td>
+    </ng-container>
+
+
+
+
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

@@ -7,6 +7,7 @@ import { StudentService } from 'src/app/services/back/student.service';
 import { DailyTopicsService } from 'src/app/services/back/daily-topics.service';
 import { DailyTopic } from 'src/app/models/daily-topic';
 import { AdministratorService } from 'src/app/services/back/administrator.service';
+import {UpdateStudentDialogComponent} from '../../components/add-element-dialog/update-student-dialog/update-student-dialog.component';
 
 
 @Component({
@@ -26,6 +27,14 @@ export class AdministratorSideComponent implements OnInit {
   dailyTopics: { idStudent: string, dailyTopics: DailyTopic[] }[] = [];
   checkedStudents: Student[];
 
+  /**
+   *
+   * @param router: Gère la gestion des routes
+   * @param dialog: Permet de gérer les modal
+   * @param dailyTopicService: Service gérant les problèmes journaliers
+   * @param studentService: Service gérant les étudiants
+   * @param administratorService: Service gérant les administrateur
+   */
   constructor(private readonly router: Router,
     private readonly dialog: MatDialog,
     private readonly dailyTopicService: DailyTopicsService,
@@ -36,6 +45,9 @@ export class AdministratorSideComponent implements OnInit {
 
   logs: { idPerson: string; type: string };
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.areDisplayArchived = false;
     this.archivedStudents = [];
@@ -43,14 +55,19 @@ export class AdministratorSideComponent implements OnInit {
     this.checkedStudents = [];
     this.initStudentsLists();
     this.dataSource = new MatTableDataSource<Student>([]);
-
-    this.displayedColumns = ['Signal', 'Name', 'University', 'Last connection', 'Entrant/Leaving', 'OpenInNew', 'SelectRow'];
+    // tslint:disable-next-line:max-line-length
+    this.displayedColumns = ['Signal', 'Name', 'University', 'Last connection', 'Entrant/Leaving', 'OpenInNew', 'SelectRow', 'UpdateStudent'];
     this.dataSource.paginator = this.paginator;
     this.setDataSource();
 
     this.logs = { idPerson: localStorage.getItem('idPerson'), type: localStorage.getItem('type') };
   }
 
+  /**
+   * Récupère toutes les données relatives aux étudiants depuis le back-end
+   * Attention, les étudiants ne sont per récupérés depuis le back-end dans cette fonction.
+   * Les Students sont récupéré par le composant courant via la route
+   */
   initStudentsLists(): void {
     this.studentsInput.forEach(student => {
 
@@ -67,6 +84,39 @@ export class AdministratorSideComponent implements OnInit {
           this.dailyTopics.push(dailyTopicByStudent);
         });
 
+    });
+  }
+
+  updateStudentModal(student: Student) {
+    let dialogRef = null;
+    const matDialogConfig = new MatDialogConfig();
+    matDialogConfig.autoFocus = true;
+    matDialogConfig.width = '60%';
+    matDialogConfig.maxHeight = '90vh';
+    matDialogConfig.data = student;
+
+    dialogRef = this.dialog.open(UpdateStudentDialogComponent, matDialogConfig);
+    dialogRef.afterClosed().subscribe((result: Student) => {
+      if (result) {
+        const idPerson = student.getIdPerson();
+        result.setIdPerson(idPerson);
+        this.studentService.updateStudent(result).subscribe(() => {
+            student = result;
+            /**
+             * Met à jour les étudiants dans le front-end quand le modification dans le back-end a été effectuée
+             */
+            this.dataSource.data = this.nonArchivedStudents.map((s: Student) => {
+              if (s.getIdPerson() === idPerson) {
+                s = result;
+              }
+              return s;
+            });
+
+          },
+          err => {
+            console.log(err);
+          });
+      }
     });
   }
 

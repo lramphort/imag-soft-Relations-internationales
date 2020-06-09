@@ -1,18 +1,11 @@
-import { Poll } from './poll';
-
+/**
+ * Représente une réponse possible
+ */
 export class PossibleAnswer {
 
     private idPossibleAnswer: string;
     private idPoll: string;
     private value: string;
-
-    // constructor(idPossibleAnswer: string, poll: Poll, value: string) {
-    //     this.idPossibleAnswer = idPossibleAnswer;
-    //     this.poll = poll;
-    //     this.value = value;
-
-    //     this.poll.getPossiblesAnswers().push(this);
-    // }
 
     constructor(data: object) {
         const possibleAnswer = data || {};

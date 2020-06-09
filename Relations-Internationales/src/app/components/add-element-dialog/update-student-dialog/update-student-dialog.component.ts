@@ -10,6 +10,9 @@ import { DatePipe } from '@angular/common';
 })
 export class UpdateStudentDialogComponent implements OnInit {
 
+  /**
+   * Avec les ngModel dans le html, les champs suivants sont mis à jour automatiquement
+   */
   firstName: string;
   emailAddress: string;
   university: string;
@@ -27,29 +30,47 @@ export class UpdateStudentDialogComponent implements OnInit {
   isPhoneNumberValid: boolean;
   isBirthDateValid: boolean;
 
+  /**
+   *
+   * @param dialogRef: Le composant gérant le modal
+   * @param datePipe: Permet d'ajouter un pipe pour traiter les dates
+   * @param student: Student
+   */
   constructor(private readonly dialogRef: MatDialogRef<UpdateStudentDialogComponent>,
     private readonly datePipe: DatePipe,
-    @Inject(MAT_DIALOG_DATA) public data: Student) {
-    this.firstName = data.getFirstName();
-    this.emailAddress = data.getEmailAddress();
-    this.university = data.getUniversity();
-    this.isEntrant = data.getIsEntrant();
-    this.lastName = data.getLastName();
-    this.phoneNumber = data.getPhoneNumber();
-    this.birthDate = data.getBirthDate();
+    @Inject(MAT_DIALOG_DATA) public student: Student) {
+    this.firstName = student.getFirstName();
+    this.emailAddress = student.getEmailAddress();
+    this.university = student.getUniversity();
+    this.isEntrant = student.getIsEntrant();
+    this.lastName = student.getLastName();
+    this.phoneNumber = student.getPhoneNumber();
+    this.birthDate = student.getBirthDate();
 
   }
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.isFormValid = true;
   }
 
-  createStudent(): void {
+  /**
+   * Met à jour l'étudiant
+   */
+  updateStudent(): void {
     if (this.checkForm()) {
+      /**
+       * Student est récupéré dans le composant qui a appelé ce composant. Par exemple AdministratorSideComponent
+       */
       this.dialogRef.close(new Student({
         emailAddress: this.emailAddress,
         firstName: this.firstName,
         lastName: this.lastName,
+        /**
+         * Transforme le format de la date
+         */
         birthDate: this.datePipe.transform(this.birthDate, 'yyyy-MM-dd'),
         lastConnection: null,
         phoneNumber: this.phoneNumber,
@@ -57,12 +78,19 @@ export class UpdateStudentDialogComponent implements OnInit {
         isEntrant: this.isEntrant === 'true' ? 'true' : 'false',
         isArchived: 'false',
         isLearningAgreementValid: 'false',
+        /**
+         * Ces champs ne sont pas nécessaires car ils ne sont pas mis à jour.
+         * Mais je dois les indiquer tout de même sinon je ne peux aps créer un nouvel étudiant
+         */
         login: this.emailAddress,
-        passWord: 'root'
+        passWord: 'something'
       }));
     }
   }
 
+  /**
+   * Vérifie que les informations du formulaire sont correctement renseignées
+   */
   checkForm(): boolean {
     this.isFormValid = true;
 

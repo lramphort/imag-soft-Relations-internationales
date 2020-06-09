@@ -13,6 +13,9 @@ export class SondageModalComponent implements OnInit {
 
   constructor() { }
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
   }
 

@@ -2,10 +2,6 @@
   <input matInput [(ngModel)]="data.mark" placeholder="{{'Mark'|translate}}" value="" required>
   <mat-error *ngIf="!isFieldFiled(data.mark)"><span translate>invalid field</span></mat-error>
 </mat-form-field>
-<mat-form-field>
-  <input matInput [(ngModel)]="data.typeMark" placeholder="{{'Type Mark'|translate}}" value="" required>
-  <mat-error *ngIf="!isFieldFiled(data.typeMark)"><span translate>invalid field</span></mat-error>
-</mat-form-field>
 <div mat-dialog-actions>
   <button mat-button (click)="dialog.close()"><span translate>cancel</span></button>
   <button mat-button (click)="save()" cdkFocusInitial [disabled]="!isFormValid()">Ok</button>

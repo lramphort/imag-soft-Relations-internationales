@@ -7,6 +7,11 @@ export class AuthenticationGuard implements CanActivate {
 
   constructor(private readonly router: Router) { }
 
+  /**
+   * Permet de vérifier que l'utilisateur est connecté quand il veut aller sur une nouvelle route
+   * @param next: La route sur laquelle l'utilisateur veut aller
+   * @param state: La route courante de l'utilisateur
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

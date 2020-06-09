@@ -13,8 +13,12 @@ export class AppComponent {
   title = 'Relations-Internationales';
   private user: any;
 
+  /**
+   *
+   * @param administratorService: Service gérant les administrateurs
+   * @param translate: Composant gérant la translation sur le site
+   */
   constructor(private readonly administratorService: AdministratorService, private translate: TranslateService) {
-    // Todo A faire avec un resolver
     this.administratorService.getAdministrator('5').subscribe(resultPerson => {
       // const userStudent = this.simulator.getStudents()[0];
       this.user = new Administrator(resultPerson[0]);
@@ -26,8 +30,15 @@ export class AppComponent {
     }
   }
 
+  /**
+   * Permet de récupérer l'event qui change de langue.
+   * @param elementRef
+   */
   onActivate(elementRef) {
     elementRef.setLanguage.subscribe(event => {
+      /**
+       * Utilise la translation anglaise ou française
+       */
       this.translate.use(event);
     });
   }

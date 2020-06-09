@@ -61,12 +61,10 @@
         <!-- Column header -->
         <mat-list-item class="header" role="listitem">
           <h2 class="mark-column" translate>Mark</h2>
-          <h2 class="mark-column" translate>Type</h2>
         </mat-list-item>
         <!-- Teacher content -->
         <mat-list-item *ngFor="let mark of marks" role="listitem">
           <h2 class="mark-column">{{ mark.getValueMark() }}</h2>
-          <h2 class="mark-column">{{ mark.getTypeMark() }}</h2>
         </mat-list-item>
       </mat-list>
       <button mat-icon-button (click)="addMark()">

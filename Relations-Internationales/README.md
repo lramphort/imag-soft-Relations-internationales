@@ -47,6 +47,32 @@ Les premières informations sont réservées aux cours. L'étudiant peut filtrer
 
 Il y a deux sous-parties qui suivent : les Topics Life et les Topics Courses. Ils ont le meme fonctionnement l'un et l'autre. Si un admin a posé un poll sur une matière, l'étudiant peut le voir et répondre, soit en choisissant une réponse que l'admin a manuellement entré, soit en écrivant lui-meme sa réponse.
 
+## Traduction 
+
+Attenton, il ne faut surtout pas modifier les textes directement dans les html. En faisant cela, vous allez casser la traduction.
+
+Dans le html, vous ne mettez qu'une référence. Les traductions sont dans assets/i18n/*.json
+
+De plus, il ne faut pas écrire cela : 
+
+`<span>Example </span>` mais `<span>Example</span>` ( sans l'espace ). Le match ne se fait pas correctement s'il y a des espaces.
+
+## Code 
+
+Un composant est constitué de 4 fichiers. Un fichier ts e typescript comprenant la logique du composant. Un fichier html et css pour l'affichage.
+Le fichier spec.ts est édité automatiquement
+
+Il est préférable d'installer WebStorm pour pouvoir éditer correctement ce projet. Il vous permettra de naviguer plus facilement à travers les composants.
+
+Le framework Angular material est utilisé pour éditer le html. Il permet d'utiliser des composants angular tout faits.
+
+Dans /services, vous trouverez toutes les classes permettant de discuter avec le back. Notamment toutes les requêtes http
+
+## Contact
+
+Vous pouvez contacter Loïc RAMPHORT - lramphorttt@gmail.com si vous avez besoins d'aide.
+
+Vous pouvez également contacter un professeur qui est très à l'aise avec Angular : Alexandre DEMEURE - alexandre.demeure@imag.fr
 
 ----------------------------------------------------
 
@@ -57,6 +83,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Installation et run en local
+
+Avant de coder, veuillez lancer `yarn install` pour télécharger les modules. `npm start` pour ensuite lancer le projet en local sur [localhost:4200](http://127.0.0.1:4200)
 
 ## Build
 

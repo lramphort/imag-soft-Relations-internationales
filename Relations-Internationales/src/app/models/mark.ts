@@ -1,5 +1,6 @@
-import { Course } from './course';
-
+/**
+ * Représente une note
+ */
 export class Mark {
 
     private idMark: string;
@@ -7,15 +8,6 @@ export class Mark {
     private idPerson: string;
     private typeMark: string;
     private valueMark: number;
-
-    // constructor(idMark: string, course: Course, typeMark: string, value: number) {
-    //     this.idMark = idMark;
-    //     this.course = course;
-    //     this.typeMark = typeMark;
-    //     this.value = value;
-
-    //     this.course.getMarks().push(this);
-    // }
 
     constructor(data: object) {
         const mark = data || {};

@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit {
     private readonly studentService: StudentService,
     private readonly administratorService: AdministratorService) { }
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.login = '';
     this.passWord = '';
@@ -31,6 +34,9 @@ export class LoginComponent implements OnInit {
     this.router.navigate([route]);
   }
 
+  /**
+   * Permet la connexion d'un étudiant ou d'un administrateur
+   */
   connexion() {
     this.studentService.testLogs(this.login, this.passWord).subscribe(resultStudent => {
       if (resultStudent['result']) {

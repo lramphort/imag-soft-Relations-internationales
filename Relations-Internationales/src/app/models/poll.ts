@@ -1,6 +1,6 @@
-import { Course } from './course';
-import { PossibleAnswer } from './possible-answer';
-
+/**
+ * Représente un questonnaire. Avec une question et une réponse
+ */
 export class Poll {
 
     private idPoll: string;
@@ -10,19 +10,6 @@ export class Poll {
     private question: string;
     private answer: string;
     private dateAnswer: Date;
-
-    // constructor(idPoll: string, course: Course, status: string, question: string, answer: string,
-    //     dateAnswer: Date, possiblesAnswers: PossibleAnswer[]) {
-    //     this.idPoll = idPoll;
-    //     this.course = course;
-    //     this.status = status;
-    //     this.question = question;
-    //     this.answer = answer;
-    //     this.dateAnswer = dateAnswer;
-    //     this.possiblesAnswers = possiblesAnswers;
-
-    //     this.course.getPolls().push(this);
-    // }
 
     constructor(data: object) {
         const poll = data || {};

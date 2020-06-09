@@ -47,9 +47,9 @@
         </div>
         <!-- Field Semester -->
         <div class="semester-field">
-          <h3>Semester</h3>
+          <h3 [class.invalid-field]="!isFormValid && !isSemesterValid">Semester</h3>
           <mat-form-field>
-            <input matInput type="text" placeholder="{{'Enter the semester'| translate}}" [(ngModel)]="semester" name="courseSemester">
+            <input matInput type="text" placeholder="{{'Enter the semester'| translate}}" [(ngModel)]="semester" name="courseSemester" required>
           </mat-form-field>
         </div>
       </div>

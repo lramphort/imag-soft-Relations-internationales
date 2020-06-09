@@ -10,6 +10,9 @@ export class ErrorComponent implements OnInit {
 
   constructor(private router: Router) { }
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
   }
 

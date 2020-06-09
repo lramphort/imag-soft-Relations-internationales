@@ -19,7 +19,6 @@
           <h2 *ngIf="selectedStudent.getLastConnection()"><span translate>Last connection</span> : {{ selectedStudent.getLastConnection() |
           date: 'dd-MM-yyyy' }}</h2>
           <h2 *ngIf="!selectedStudent.getLastConnection()"><span translate>Last connection</span> : /</h2>
-          <h3 class="contact" (click)="displaySendEmailDialog()">Contact</h3>
         </div>
         <!-- University -->
         <div class="student-university">

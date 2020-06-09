@@ -1,4 +1,6 @@
-
+/**
+ * Représente un étudiant
+ */
 export class Student {
 
     private idPerson: string;

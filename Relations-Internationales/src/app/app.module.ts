@@ -43,10 +43,10 @@ import { AddDailyTopicDialogComponent } from './components/add-element-dialog/ad
 import { HeaderComponent } from './components/header/header.component';
 import { DatePipe } from '@angular/common';
 import { AddStudentDialogComponent } from './components/add-element-dialog/add-student-dialog/add-student-dialog.component';
-import { AddCourseModalComponent } from './pages/add-course-modal/add-course-modal.component';
-import { CourseDetailModalComponent } from './pages/course-detail-modal/course-detail-modal.component';
-import { AddContactModalComponent } from './pages/add-contact-modal/add-contact-modal.component';
-import { AddPrivateLifeModalComponent } from './pages/add-private-life-modal/add-private-life-modal.component';
+import { AddCourseModalComponent } from './components/add-element-dialog/add-course-modal/add-course-modal.component';
+import { CourseDetailModalComponent } from './components/add-element-dialog/course-detail-modal/course-detail-modal.component';
+import { AddContactModalComponent } from './components/add-element-dialog/add-contact-modal/add-contact-modal.component';
+import { AddPrivateLifeModalComponent } from './components/add-element-dialog/add-private-life-modal/add-private-life-modal.component';
 
 import { SondageModalComponent } from './pages/sondage-modal/sondage-modal.component';
 
@@ -60,7 +60,7 @@ import { ContactsResolver } from './resolvers/contacts.resolver';
 import { DailyTopicsResolver } from './resolvers/dailyTopics.resolver';
 import { LoginResolver } from './resolvers/login.resolver';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { AddMarkModalComponent } from './pages/add-mark-modal/add-mark-modal.component';
+import { AddMarkModalComponent } from './components/add-element-dialog/add-mark-modal/add-mark-modal.component';
 import {UpdateStudentDialogComponent} from './components/add-element-dialog/update-student-dialog/update-student-dialog.component';
 
 

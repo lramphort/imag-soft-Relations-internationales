@@ -33,6 +33,9 @@ export class HomeComponent implements OnInit {
     private readonly studentService: StudentService, private translate: TranslateService) {
   }
 
+  /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.isAdministrator = localStorage.getItem('type') === 'administrator';
 
@@ -54,7 +57,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * Change de langage. Le changement de langage s'effectue dans AppComponent
+   * @param event
+   */
   switchLanguage(event) {
     this.setLanguage.emit(event);
+    /**
+     * Si l'on met le changement de langage à ce niveau là, la translation ne fonctionne pas.
+     * Il faut remonter l'event jusqu'au AppComponent.
+     */
   }
 }

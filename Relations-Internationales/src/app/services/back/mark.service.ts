@@ -54,6 +54,6 @@ export class MarkService {
 
   addMark(mark: object): Observable<any> {
     // tslint:disable-next-line:max-line-length
-    return this.http.get<object>(`${environment.ip_address}${environment.back.add_mark}?idPerson=${mark['idPerson']}&idCourse=${mark['idCourse']}&typeMark=${mark['typeMark']}&valueMark=${mark['valueMark']}`);
+    return this.http.get<object>(`${environment.ip_address}${environment.back.add_mark}?idPerson=${mark['idPerson']}&idCourse=${mark['idCourse']}&typeMark=_&valueMark=${mark['valueMark']}`);
   }
 }

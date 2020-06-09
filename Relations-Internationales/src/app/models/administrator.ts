@@ -1,4 +1,6 @@
-
+/**
+ * Représente un administrateur
+ */
 export class Administrator {
 
     private idPerson: string;

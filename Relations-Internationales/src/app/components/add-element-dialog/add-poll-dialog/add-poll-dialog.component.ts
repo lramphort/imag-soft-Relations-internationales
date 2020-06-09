@@ -12,6 +12,9 @@ import { Student } from 'src/app/models/student';
 })
 export class AddPollDialogComponent implements OnInit {
 
+  /**
+   * Avec les ngModel dans le html, les champs suivants sont mis à jour automatiquement
+   */
   question: string;
   possibleAnswers: string[];
   possibleAnswer: string;
@@ -19,11 +22,19 @@ export class AddPollDialogComponent implements OnInit {
   arePossibleAnswersValid: boolean;
   isQuestionValid: boolean;
   isFormValid: boolean;
-
+  /**
+   *
+   * @param dialogRef: Le composant gérant la modal
+   * @param injectedStudent: L'étudiant envoyé à la modal
+   * @param injectedCourse: Le cour envoyé à la model
+   */
   constructor(private dialogRef: MatDialogRef<AddPollDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public injectedCourse: Course,
     @Inject(MAT_DIALOG_DATA) public injectedStudent: Student) { }
 
+    /**
+   * Le ngOnInit est exécuté au moment où le composant se charge. Juste après le constructeur
+   */
   ngOnInit() {
     this.possibleAnswers = [];
     this.possibleAnswer = '';
@@ -58,10 +69,16 @@ export class AddPollDialogComponent implements OnInit {
         value: value
       }));
 
+      /**
+       * poll et answers sont récupérés dans le composant qui a appelé ce composant. Par exemple CourseDetailsComponent
+       */
       this.dialogRef.close({ poll: newPoll, answers: this.possibleAnswers });
     }
   }
 
+  /**
+   * Vérifie que les informations du formulaire sont correctement renseignées
+   */
   checkForm(): boolean {
     this.isFormValid = true;
 
